@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2d7b0591-dbce-41b3-8784-db3364606b34" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Appointment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Appointment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Doctor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Doctor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Doctor_Service_Relation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Doctor_Service_Relation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Patient.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Patient.php" afterDir="false" />
-    </list>
+    <list default="true" id="2d7b0591-dbce-41b3-8784-db3364606b34" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,17 +12,7 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Patient.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -57,6 +42,8 @@
         <option value="$PROJECT_DIR$/app/Doctor.php" />
         <option value="$PROJECT_DIR$/app/Doctor_Service_Relation.php" />
         <option value="$PROJECT_DIR$/app/Patient.php" />
+        <option value="$PROJECT_DIR$/app/Services.php" />
+        <option value="$PROJECT_DIR$/app/WorkingHour.php" />
       </list>
     </option>
   </component>
@@ -226,18 +213,18 @@
       <option name="presentableId" value="Default" />
       <updated>1558506749794</updated>
       <workItem from="1558506752087" duration="1127000" />
-      <workItem from="1558508779366" duration="738000" />
+      <workItem from="1558508779366" duration="1435000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1865000" />
+    <option name="totallyTimeSpent" value="2562000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="27" width="1863" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2526142" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2526142" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -339,10 +326,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Services.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="10" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Patient.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="10" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/WorkingHour.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
         </state>
       </provider>
     </entry>
