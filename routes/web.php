@@ -13,8 +13,23 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::view('doctors','doctor.index')->name('doctors');
+Route::view('doctor/add','doctor.add')->name('doctor.add');
+
+
+Route::view('/patients','patients')->name('patients');
+
+Route::view('/appointments','appointments')->name('appointments');
+Route::view('appointment/add','appointment.add')->name('appointment.add');
+
+
+Route::view('schedule','schedule.index')->name('schedule');
+Route::view('schedule/add','schedule.add')->name('schedule.add');
+
+Route::view('settings','settings')->name('settings');

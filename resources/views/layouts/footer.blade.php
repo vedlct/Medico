@@ -3,9 +3,18 @@
 <script src="{{url('public')}}/assets/js/popper.min.js"></script>
 <script src="{{url('public')}}/assets/js/bootstrap.min.js"></script>
 <script src="{{url('public')}}/assets/js/jquery.slimscroll.js"></script>
-<script src="{{url('public')}}/assets/js/Chart.bundle.js"></script>
-<script src="{{url('public')}}/assets/js/chart.js"></script>
+{{--<script src="{{url('public')}}/assets/js/Chart.bundle.js"></script>--}}
+{{--<script src="{{url('public')}}/assets/js/chart.js"></script>--}}
+<script src="{{url('public')}}/assets/js/select2.min.js"></script>
+<script src="{{url('public')}}/assets/js/moment.min.js"></script>
+<script src="{{url('public')}}/assets/js/bootstrap-datetimepicker.min.js"></script>
 <script src="{{url('public')}}/assets/js/app.js"></script>
+@yield('js')
+
+
+
+
+
 
 </body>
 
