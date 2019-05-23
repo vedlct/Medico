@@ -9,8 +9,28 @@
 <script src="{{url('public')}}/assets/js/moment.min.js"></script>
 <script src="{{url('public')}}/assets/js/bootstrap-datetimepicker.min.js"></script>
 <script src="{{url('public')}}/assets/js/app.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+@if(Session::has('message'))
+    <script>
+        toastr.options.timeOut = 3000;
+        toastr.options.closeButton = false;
+        toastr.options.progressBar = false;
+        toastr.options.positionClass = "toast-bottom-right";
+        toastr.success("{{ Session::get('message') }}", {timeOut: 4000})
+    </script>
+@endif
+
+
 @yield('js')
 
 
