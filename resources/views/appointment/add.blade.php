@@ -116,3 +116,17 @@
 
 
 @endsection
+
+
+
+@section('js')
+    <script>
+        $(function () {
+            $('#datetimepicker3').datetimepicker({
+                format: 'LT'
+            });
+
+        });
+    </script>
+
+@endsection
