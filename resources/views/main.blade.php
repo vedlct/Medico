@@ -51,8 +51,13 @@
     @include('layouts.sidebar')
 
 
+
+
     <div class="page-wrapper">
         <div class="content">
+            @if(Session::has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @endif
             @yield('content')
 
         </div>

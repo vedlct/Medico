@@ -23,8 +23,12 @@ Route::group(['middleware'=>['auth']],function (){
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::view('doctors','doctor.index')->name('doctors');
+    Route::get('doctors','DoctorController@index')->name('doctors');
     Route::view('doctor/add','doctor.add')->name('doctor.add');
+    Route::get('doctor/edit/{id}','DoctorController@edit')->name('doctor.edit');
+
+    Route::post('doctor/insert','DoctorController@insert')->name('doctor.insert');
+    Route::post('doctor/update','DoctorController@update')->name('doctor.update');
 
 
     Route::view('/patients','patients')->name('patients');

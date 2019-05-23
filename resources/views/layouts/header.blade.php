@@ -15,10 +15,17 @@
 
     <link rel="stylesheet" type="text/css" href="{{url('public')}}/assets/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="{{url('public')}}/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 
 
     <!--[if lt IE 9]>
     <script src="{{url('public')}}/assets/js/html5shiv.min.js"></script>
     <script src="{{url('public')}}/assets/js/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .error {
+            color: red;
+
+        }
+    </style>
 </head>
