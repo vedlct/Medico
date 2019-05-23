@@ -30,14 +30,26 @@
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{route('doctor.edit',['id'=>$d->doctorId])}}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_doctor"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                            <a class="dropdown-item" onclick="return confirm('Are you sure?')" href="{{route('doctor.delete',['id'=>$d->doctorId])}}"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
 
                     <h4 class="doctor-name text-ellipsis"><a href="profile.html">{{$d->firstName." ".$d->lastName}}</a></h4>
                     <div class="doc-prof">{{$d->degree}}</div>
-                    <div class="doc-prof">{{$d->email}}</div>
-                    <div class="doc-prof">{{$d->phone}}</div>
+                    <div class="doc-prof"><b>Email</b>: {{$d->email}}</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="doc-prof"><b>Phone</b>: {{$d->phone}}</div>
+                        </div>
+                        <div class="col-md-6">
+                            @foreach(USER_STATUS as $key=>$value)
+                                @if($value==$d->status)
+                                    <div class="doc-prof"><b>Status</b>: {{$key}}</div>
+                                @endif
+                            @endforeach
+                        </div>
+
+                    </div>
                     <div class="user-country">
                         <i class="fa fa-map-marker"></i> {{$d->address}}
                     </div>

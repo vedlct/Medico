@@ -26,6 +26,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('doctors','DoctorController@index')->name('doctors');
     Route::view('doctor/add','doctor.add')->name('doctor.add');
     Route::get('doctor/edit/{id}','DoctorController@edit')->name('doctor.edit');
+    Route::get('doctor/update/{id}','DoctorController@delete')->name('doctor.delete');
 
     Route::post('doctor/insert','DoctorController@insert')->name('doctor.insert');
     Route::post('doctor/update','DoctorController@update')->name('doctor.update');

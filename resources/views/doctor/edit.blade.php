@@ -152,7 +152,7 @@
                 {{--</div>--}}
 
                 <div class="m-t-20 text-center">
-                    <button class="btn btn-primary submit-btn">Create Doctor</button>
+                    <button class="btn btn-primary submit-btn">Update Doctor</button>
                 </div>
             </form>
         </div>

@@ -22,6 +22,20 @@ class DoctorController extends Controller
 
         return view('doctor.edit',compact('doctors'));
     }
+    public function delete($id){
+
+        $doctor=Doctor::findOrFail($id);
+        $doctor->status=USER_STATUS['Deleted'];
+        $doctor->save();
+
+        $user=User::findOrFail($doctor->fkuserId);
+        $user->status=USER_STATUS['Deleted'];
+        $user->save();
+
+        return back();
+
+
+    }
 
     public function insert(Request $r){
 
