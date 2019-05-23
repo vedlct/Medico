@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Services;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -52,4 +53,5 @@ class ServiceController extends Controller
 
         return back();
     }
+
 }
