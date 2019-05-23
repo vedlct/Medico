@@ -40,12 +40,12 @@ Route::group(['middleware'=>['auth']],function (){
 
 
     //----------- ServiceController ------------------//
-    Route::get ('services','ServiceController@service_list')->name('services');
-    Route::post('services-get-data','ServiceController@get_service_list')->name('services.getAllData');
-    Route::post('services-insert','ServiceController@insert_service_list')->name('services.insert');
-    Route::post('services-edit','ServiceController@edit_service')->name('service.edit');
-    Route::post('services-update','ServiceController@update_service')->name('service.update');
-    Route::post('services-delete','ServiceController@delete_service')->name('services.delete');
+    Route::get ('services',          'ServiceController@service_list')        ->name('services');
+    Route::post('services-get-data', 'ServiceController@get_service_list')    ->name('services.getAllData');
+    Route::post('services-insert',   'ServiceController@insert_service_list') ->name('services.insert');
+    Route::post('services-edit',     'ServiceController@edit_service')        ->name('service.edit');
+    Route::post('services-update',   'ServiceController@update_service')      ->name('service.update');
+    Route::post('services-delete',   'ServiceController@delete_service')      ->name('services.delete');
 
 });
 
