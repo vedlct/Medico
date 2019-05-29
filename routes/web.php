@@ -52,6 +52,10 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('services-update',   'ServiceController@update_service')      ->name('service.update');
     Route::post('services-delete',   'ServiceController@delete_service')      ->name('services.delete');
 
+    //----------- appointment Sms ------------------//
+    Route::get('/daily-AppointmentSms', 'SmsController@dailyAllAppointment')->name('sms.dailyAllAppointment');
+
+
 });
 
 
