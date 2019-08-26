@@ -13,43 +13,70 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-border table-striped custom-table mb-0">
+                    <table id="showschedule" class="table table-border table-striped custom-table mb-0">
                         <thead>
                         <tr>
                             <th>Doctor Name</th>
-                            <th>Department</th>
+{{--                            <th>Department</th>--}}
                             <th>Available Days</th>
-                            <th>Available Time</th>
-                            <th>Status</th>
-                            <th class="text-right">Action</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+{{--                            <th>Status</th>--}}
+{{--                            <th class="text-right">Action</th>--}}
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-
-                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt="">Mr. XYZ</td>
-                            <td>Cardiology</td>
-                            <td>Sunday, Monday, Tuesday</td>
-                            <td>10:00 AM - 7:00 PM</td>
-                            <td><span class="custom-badge status-green">Active</span></td>
-                            <td class="text-right">
-                                <div class="dropdown dropdown-action">
-                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="edit-schedule.html"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_schedule"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 
 
+
+
+
+@endsection
+@section('js')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function() {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+            table = $('#showschedule').DataTable({
+                processing: true,
+                serverSide: true,
+                stateSave: true,
+                "ajax": {
+                    "url": "{!! route('schedule.datashow') !!}",
+                    "type": "POST",
+                    data: function (d) {
+                        d._token = "{{csrf_token()}}";
+                    },
+                },
+                columns: [
+
+                    {data: 'doctorname', name: 'doctorname'},
+                    {data: 'day', name: 'day'},
+                    {data: 'start_time', name: 'start_time' },
+                    {data: 'end_time', name: 'end_time'},
+                    // {data: 'day', name: 'working_hour.day'},
+                    // {data: 'day', name: 'working_hour.day'},
+
+                    // { "data": function(data){
+                    //         return '&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id="'+data.patientId+'"onclick="deletepatient(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>';},
+                    //     "orderable": false, "searchable":false, "name":"action" },
+                ],
+
+            });
+        });
+
+    </script>
 
 @endsection

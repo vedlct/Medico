@@ -32,24 +32,30 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('doctor/update','DoctorController@update')->name('doctor.update');
 
 
-    Route::get('/patient','PatientController@index')->name('patients');
-    Route::get('/patient/add','PatientController@add')->name('patients.add');
+//    Route::view('/patients','patients')->name('patients');
+//    Route::post('patientShow','PatientController@showAllPatientInfo')->name('patients.show');
 
-    Route::post('/patient/insert','PatientController@insert')->name('patient.insert');
-    Route::post('/patient/update','PatientController@update')->name('patient.update');
-    Route::post('/patientShow','PatientController@showAllPatientInfo')->name('patients.show');
+    Route::get('/patients','PatientController@index')->name('patients');
+    Route::get('/patients/add','PatientController@add')->name('patients.add');
+    Route::post('/patients/insert','PatientController@insert')->name('patient.insert');
+    Route::post('/patients/update','PatientController@update')->name('patient.update');
+    Route::post('/patientsShow','PatientController@showAllPatientInfo')->name('patients.show');
+    Route::post('/patients-delete', 'PatientController@delete')->name('patient.delete');
 
-    Route::post('/patient-delete', 'PatientController@delete')->name('patient.delete');
+
+
+
 
     Route::view('/appointments','appointments')->name('appointments');
     Route::view('appointment/add','appointment.add')->name('appointment.add');
 
 
-    Route::view('schedule','schedule.index')->name('schedule');
+//    Route::view('schedule','schedule.index')->name('schedule');
 //    Route::view('schedule/add', 'schedule.add')->name('schedule.add');
-    Route::get('schedule/add', 'ScheduleController@index')->name('schedule.add');
-    Route::get('schedule/show', 'ScheduleController@add')->name('schedule.show');
+    Route::get('schedule', 'ScheduleController@index')->name('schedule');
+    Route::get('schedule/add', 'ScheduleController@add')->name('schedule.add');
     Route::post('schedule/insert', 'ScheduleController@insertdata')->name('schedule.insert');
+    Route::post('show-schedule', 'ScheduleController@showSchedule')->name('schedule.datashow');
 
     Route::view('settings','settings')->name('settings');
 
