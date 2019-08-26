@@ -26,7 +26,8 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> Henry Daniels</td>
+
+                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt="">Mr. XYZ</td>
                             <td>Cardiology</td>
                             <td>Sunday, Monday, Tuesday</td>
                             <td>10:00 AM - 7:00 PM</td>

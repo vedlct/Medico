@@ -16,7 +16,7 @@
                     <a href="{{route('appointments')}}"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
                 </li>
                 <li>
-                    <a href="{{route('schedule')}}"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
+                    <a href="{{ route('schedule') }}"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
                 </li>
                 <li>
                     <a href="{{route('services')}}"><i class="fa fa-server"></i> <span>Services</span></a>

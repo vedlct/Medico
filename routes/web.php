@@ -39,7 +39,10 @@ Route::group(['middleware'=>['auth']],function (){
 
 
     Route::view('schedule','schedule.index')->name('schedule');
-    Route::view('schedule/add','schedule.add')->name('schedule.add');
+//    Route::view('schedule/add', 'schedule.add')->name('schedule.add');
+    Route::get('schedule/add', 'ScheduleController@index')->name('schedule.add');
+    Route::get('schedule/show', 'ScheduleController@add')->name('schedule.show');
+    Route::post('schedule/insert', 'ScheduleController@insertdata')->name('schedule.insert');
 
     Route::view('settings','settings')->name('settings');
 
