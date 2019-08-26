@@ -22,9 +22,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 
+
+    <script src=" https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src=" https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <!--[if lt IE 9]>
     <script src="{{url('public')}}/assets/js/html5shiv.min.js"></script>
     <script src="{{url('public')}}/assets/js/respond.min.js"></script>
+
+
     <![endif]-->
     <style>
         .error {
