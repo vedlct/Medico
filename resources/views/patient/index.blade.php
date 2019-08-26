@@ -31,6 +31,8 @@
     </div>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+@endsection
+@section('js')
     <script>
         $.ajaxSetup({
             headers: {
@@ -69,25 +71,33 @@
             });
         });
 
+
         function deletepatient(x)
         {
 
 
             var id = $(x).data('panel-id');
+
+
             $.ajax({
-                type: "POST",
-                url: '{{route('patient.delete')}}',
-                data: {id: id,},
+                type: "post",
+                url: "{{route('patient.delete')}}",
+                data: {id: id},
                 success: function (data) {
 
-                  //  table.ajax.reload();
+                    // alert(data);
+                    table.ajax.reload();
                 }
 
             });
 
         }
     </script>
+<<<<<<< HEAD
 
 
 
 @endsection
+=======
+    @endsection
+>>>>>>> 558c3191a341af92486dde12699dc9931f5f9f92

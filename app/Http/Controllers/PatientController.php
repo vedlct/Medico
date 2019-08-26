@@ -45,7 +45,7 @@ class PatientController extends Controller
         Session::flash('message', 'Patient List Created!');
         Session::flash('alert-class', 'alert-success');
 
-        return back();
+        return redirect()->route('patients');
     }
 
     public function update(Request $r){
@@ -73,15 +73,18 @@ class PatientController extends Controller
 
     }
 
-    public function destroy($id)
+    public function edit($id)
     {
-        //
+
+
+
+        $patient= Patient::findOrFail($id);
+
+        return view('patient.edit',compact('patient'));
+
     }
-    public function delete(Request $request)
-    {
-        $patient=Patient::findOrFail($request->id);
-        $patient->delete();
-    }
+
+
 
     public function showAllPatientInfo()
     {
@@ -90,6 +93,19 @@ class PatientController extends Controller
         $datatables = Datatables::of($patientInfo);
         return $datatables->make(true);
     }
+
+    public function destroy($id)
+    {
+
+    }
+    public function deletepatient(Request $request)
+    {
+        $patient=Patient::findOrFail($request->id);
+
+
+         $patient->delete();
+    }
+
 
 
 }

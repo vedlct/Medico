@@ -45,6 +45,10 @@ Route::group(['middleware'=>['auth']],function (){
 
 
 
+<<<<<<< HEAD
+=======
+    Route::post('/patient-delete', 'PatientController@deletepatient')->name('patient.delete');
+>>>>>>> 558c3191a341af92486dde12699dc9931f5f9f92
 
     Route::view('/appointments','appointments')->name('appointments');
     Route::view('appointment/add','appointment.add')->name('appointment.add');
