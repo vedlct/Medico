@@ -39,7 +39,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('/patient/update','PatientController@update')->name('patient.update');
     Route::post('/patientShow','PatientController@showAllPatientInfo')->name('patients.show');
 
-    Route::post('/patient-delete', 'PatientController@delete')->name('patient.delete');
+    Route::post('/patient-delete', 'PatientController@deletepatient')->name('patient.delete');
 
     Route::view('/appointments','appointments')->name('appointments');
     Route::view('appointment/add','appointment.add')->name('appointment.add');
