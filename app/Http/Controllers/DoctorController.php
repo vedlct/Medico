@@ -86,23 +86,23 @@ class DoctorController extends Controller
     }
     public function update(Request $r){
 
-        $userType=UserType::where('usertypeName','doctor')->first();
+            $userType=UserType::where('usertypeName','doctor')->first();
 
 
 
-        $doctor=Doctor::findOrFail($r->doctorId);
+            $doctor=Doctor::findOrFail($r->doctorId);
 
-        $doctor->firstName=$r->firstName;
-        $doctor->lastName=$r->lastName;
-        $doctor->degree=$r->degree;
-        $doctor->email=$r->email;
-        $doctor->gender=$r->gender;
-        $doctor->phone=$r->phone;
-        $doctor->address=$r->address;
+            $doctor->firstName=$r->firstName;
+            $doctor->lastName=$r->lastName;
+            $doctor->degree=$r->degree;
+            $doctor->email=$r->email;
+            $doctor->gender=$r->gender;
+            $doctor->phone=$r->phone;
+            $doctor->address=$r->address;
 //        $doctor->fkuserId=$user->userId;
-        $doctor->status=$r->status;
+            $doctor->status=$r->status;
 
-        $doctor->save();
+            $doctor->save();
 
         $user=User::findOrFail($doctor->fkuserId);
 
