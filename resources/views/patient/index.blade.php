@@ -93,11 +93,9 @@
 
         }
     </script>
-<<<<<<< HEAD
+
 
 
 
 @endsection
-=======
-    @endsection
->>>>>>> 558c3191a341af92486dde12699dc9931f5f9f92
+
