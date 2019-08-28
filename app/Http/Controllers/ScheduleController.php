@@ -29,22 +29,29 @@ class ScheduleController extends Controller
             $schedule = new WorkingHour();
             $schedule->fkdoctorId = $r->doctorId;
             $schedule->day = $day;
-            $schedule->start_time = date('H:i:s', strtotime($r->start_time));
-            $schedule->end_time = date('H:i:s', strtotime($r->end_time));
+            $schedule->start_time = date('H:i ', strtotime($r->start_time));
+            $schedule->end_time = date('H:i ', strtotime($r->end_time));
             $schedule->save();
         }
 
         return redirect(route('schedule'));
 
-
-
     }
 
     public function showSchedule() {
-        $scheduleInfo = WorkingHour::select(DB::raw("concat(`doctor`.`firstName`, ' ', `doctor`.`lastName`) as doctorname "), 'working_hourId','fkdoctorId','day','start_time','end_time')
+        $scheduleInfo = WorkingHour::select(DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname , DATE_FORMAT(`start_time`,'%h:%i %p') as start_time, DATE_FORMAT(`end_time`,'%h:%i %p') as end_time "), 'working_hourId','fkdoctorId','day')
             ->leftjoin('doctor','fkdoctorId','doctorId')->get();
 
         $datatables = Datatables::of($scheduleInfo);
         return $datatables->make(true);
     }
+
+    public function deleteSchedule(Request $request)
+    {
+        $schedule=WorkingHour::findOrFail($request->id);
+
+
+        $schedule->delete();
+    }
+
 }

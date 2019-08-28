@@ -98,6 +98,7 @@ class PatientController extends Controller
     {
 
     }
+
     public function deletepatient(Request $request)
     {
         $patient=Patient::findOrFail($request->id);

@@ -114,51 +114,49 @@
             </div>
         </div>
     </div>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
 @endsection
 
 @section('js')
 
     <script>
-        dataTable=  $('#myTable').DataTable({
-            rowReorder: {
-                selector: 'td:nth-child(0)'
-            },
-            responsive: true,
-            processing: true,
-            serverSide: true,
-            Filter: true,
-            stateSave: true,
-            ordering:false,
-            type:"POST",
-            "ajax":{
-                "url": "{!! route('services.getAllData') !!}",
-                "type": "POST",
-                data:function (d){
-                    d._token="{{csrf_token()}}";
-                },
-            },
-            columns: [
-                { data: 'servicesName', name: 'services.servicesName' },
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-                { "data": function(data)
-                    {
-                        // return '<button class="btn btn-success btn-sm mr-2" data-panel-id="'+data.tenderId+'" onclick="editTender(this)"><i class="far fa-edit"></i>Edit</button>'+
-                        //        '<button class="btn btn-danger btn-sm" data-panel-id="'+data.tenderId+'" onclick="deleteTender(this)"><i class="fa fa-trash fa-lg"></i>Delete</button>';
-                        //
-                        return '<div class="text-right">' +
-                            '<div class="dropdown dropdown-action">' +
-                                    '<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>' +
-                                    '<div class="dropdown-menu dropdown-menu-right">' +
-                                        '<button style="cursor: pointer;" class="dropdown-item" data-panel-id="'+data.servicesId+'" onclick="edit_data(this)"><i class="fa fa-pencil m-r-5"></i> Edit</button >' +
-                                        '<button style="cursor: pointer;" class="dropdown-item" data-panel-id="'+data.servicesId+'" onclick="delete_data(this)"><i class="fa fa-trash-o m-r-5"></i> Delete</button >' +
-                                    '</div>' +
-                                '</div>'+
-                            '</div>';
+        $(document).ready(function() {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                table = $('#myTable').DataTable({
+
+                    processing: true,
+                    serverSide: true,
+                    stateSave: true,
+
+
+                    "ajax": {
+                        "url": "{!! route('services.getAllData') !!}",
+                        "type": "POST",
+                        data: function (d) {
+                            d._token = "{{csrf_token()}}";
+                        },
                     },
-                    "orderable": false, "searchable":false, "name":"selected_rows"
-                },
-            ]
-        } );
+                    columns: [
+                        {data: 'servicesName', name: 'servicesName'},
+
+                        {
+                            "data": function (data) {
+                                return '&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id="' + data.patientId + '"onclick="deletepatient(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>';
+                            },
+                            "orderable": false, "searchable": false, "name": "action"},
+                    ],
+
+            });
+        });
 
 
         function edit_data(x) {

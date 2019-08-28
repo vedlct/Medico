@@ -40,12 +40,11 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('/patients/insert','PatientController@insert')->name('patient.insert');
     Route::post('/patients/update','PatientController@update')->name('patient.update');
     Route::post('/patientsShow','PatientController@showAllPatientInfo')->name('patients.show');
-    Route::post('/patients-delete', 'PatientController@delete')->name('patient.delete');
-
-
-
-
     Route::post('/patient-delete', 'PatientController@deletepatient')->name('patient.delete');
+
+
+
+
 
     Route::view('/appointments','appointments')->name('appointments');
     Route::view('appointment/add','appointment.add')->name('appointment.add');
@@ -57,6 +56,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('schedule/add', 'ScheduleController@add')->name('schedule.add');
     Route::post('schedule/insert', 'ScheduleController@insertdata')->name('schedule.insert');
     Route::post('show-schedule', 'ScheduleController@showSchedule')->name('schedule.datashow');
+    Route::post('/schedule-delete', 'ScheduleController@deleteSchedule')->name('schedule.delete');
 
     Route::view('settings','settings')->name('settings');
 
