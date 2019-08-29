@@ -22,7 +22,7 @@
                             <th>Start Time</th>
                             <th>End Time</th>
 {{--                            <th>Status</th>--}}
-                            <th class="text-right">Action</th>
+                            <th >Action</th>
                         </tr>
                         </thead>
                     </table>
@@ -67,13 +67,37 @@
                     {data: 'start_time', name: 'start_time' },
                     {data: 'end_time', name: 'end_time'},
 
-                    { "data": function(data){
-                            return '&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id="'+data.working_hourId+'"onclick="deleteSchedule(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>';},
-                        "orderable": false, "searchable":false, "name":"action" },
+                    { "data": function(data) {
+                            return '&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id="'+data.working_hourId+'"onclick="deleteSchedule(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id2="'+data.working_hourId+'"onclick="editSchedule(this)"><i class="fa fa-edit" aria-hidden="true"></i></a> ';
+                        },
+                        "orderable": false, "searchable":false, "name":"action"
+                    },
+
                 ],
 
             });
         });
+
+        function editSchedule(x)
+        {
+
+
+            var id = $(x).data('panel-id');
+
+
+            $.ajax({
+                type: "post",
+                url: "{{route('schedule.edit')}}",
+                data: {id: id},
+                success: function (data) {
+
+                    // alert(data);
+                    table.ajax.reload();
+                }
+
+            });
+
+        }
 
         function deleteSchedule(x)
         {

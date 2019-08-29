@@ -46,8 +46,9 @@ Route::group(['middleware'=>['auth']],function (){
 
 
 
-    Route::view('/appointments','appointments')->name('appointments');
-    Route::view('appointment/add','appointment.add')->name('appointment.add');
+    Route::get('appointment','AppointmentController@index')->name('appointments');
+    Route::get('appointment/add','AppointmentController@add')->name('appointment.add');
+    Route::post('appointment/new','AppointmentController@newPatient')->name('appointment.new');
 
 
 //    Route::view('schedule','schedule.index')->name('schedule');
@@ -57,6 +58,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('schedule/insert', 'ScheduleController@insertdata')->name('schedule.insert');
     Route::post('show-schedule', 'ScheduleController@showSchedule')->name('schedule.datashow');
     Route::post('/schedule-delete', 'ScheduleController@deleteSchedule')->name('schedule.delete');
+    Route::post('/schedule-edit', 'ScheduleController@editSchedule')->name('schedule.edit');
 
     Route::view('settings','settings')->name('settings');
 

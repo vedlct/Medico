@@ -94,10 +94,7 @@ class PatientController extends Controller
         return $datatables->make(true);
     }
 
-    public function destroy($id)
-    {
 
-    }
 
     public function deletepatient(Request $request)
     {
