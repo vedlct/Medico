@@ -66,37 +66,7 @@
                                     <textarea rows="5" id="address" name="address" class="form-control "></textarea>
                                 </div>
                             </div>
-                            {{--<div class="col-sm-6 col-md-6 col-lg-3">--}}
-                            {{--<div class="form-group">--}}
-                            {{--<label>Country</label>--}}
-                            {{--<select class="form-control select">--}}
-                            {{--<option>USA</option>--}}
-                            {{--<option>United Kingdom</option>--}}
-                            {{--</select>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-sm-6 col-md-6 col-lg-3">--}}
-                            {{--<div class="form-group">--}}
-                            {{--<label>City</label>--}}
-                            {{--<input type="text" class="form-control">--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-sm-6 col-md-6 col-lg-3">--}}
-                            {{--<div class="form-group">--}}
-                            {{--<label>State/Province</label>--}}
-                            {{--<select class="form-control select">--}}
-                            {{--<option>California</option>--}}
-                            {{--<option>Alaska</option>--}}
-                            {{--<option>Alabama</option>--}}
-                            {{--</select>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-sm-6 col-md-6 col-lg-3">--}}
-                            {{--<div class="form-group">--}}
-                            {{--<label>Postal Code</label>--}}
-                            {{--<input type="text" class="form-control">--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
+
                         </div>
                     </div>
                     <div class="col-sm-6">

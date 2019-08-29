@@ -13,7 +13,7 @@
                     <a href="{{route('patients')}}"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
                 </li>
                 <li>
-                    <a href="{{route('appointments')}}"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
+                    <a href="{{route('appointment')}}"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
                 </li>
                 <li>
                     <a href="{{ route('schedule') }}"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
