@@ -20,9 +20,9 @@
                             <div class="form-group">
                                 <label>Patient Name</label>
                                 <select class="select">
-                                    <option>Select</option>
-                                    <option>Jennifer Robinson</option>
-                                    <option>Terry Baker</option>
+                                    @foreach($patients as $patient)
+                                        <option value="{{$patient->patientId}}">{{$patient->firstName." ".$patient->lastName}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -45,12 +45,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Doctor</label>
-                                <select class="select">
+                                <select class="select" name="doctorId">
                                     <option>Select</option>
-                                    <option>Cristina Groves</option>
-                                    <option>Marie Wells</option>
-                                    <option>Henry Daniels</option>
+                                    @foreach($doctors as $doctor)
+                                        <option value="{{$doctor->doctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>
+                                    @endforeach
                                 </select>
+
                             </div>
                         </div>
                     </div>

@@ -45,9 +45,9 @@ Route::group(['middleware'=>['auth']],function (){
 
 
 
-
-    Route::view('/appointments','appointments')->name('appointments');
-    Route::view('appointment/add','appointment.add')->name('appointment.add');
+    Route::get('/appointments','AppointmentController@index')->name('appointment');
+     // Route::view('/appointments','appointments')->name('appointments');
+    Route::get('/appointment/add','AppointmentController@add')->name('appointment.add');
 
 
 //    Route::view('schedule','schedule.index')->name('schedule');
