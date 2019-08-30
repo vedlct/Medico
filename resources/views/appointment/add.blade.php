@@ -14,8 +14,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Patient Type : </label>
-                                <input type="radio" id="oldPatient" name="patientType" value="oldPatient">Old Patient
-                               &nbsp;&nbsp;&nbsp;<input type="radio" id="newPatient" name="patientType" value="newPatient">New Patient
+                                <div class="col-sm-5 col-9 text-right m-b-20">
+                                    <a href="{{route('appointment.old')}}" class="btn btn btn-primary btn-rounded float-right"> Old patient</a>
+                                </div> &nbsp; &nbsp;
+
+                                <div class="col-sm-5 col-9 text-right m-b-20">
+                                    <a href="{{route('appointment.new')}}" class="btn btn btn-primary btn-rounded float-right"> New patient</a>
+                                </div>
                             </div>
                         </div>
 
@@ -104,12 +109,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Doctor</label>
-                                <select class="select" name="doctorId" class="form-control">
-                                    <option>Select</option>
-                                    @foreach($doctors as $doctor)
-                                        <option value="{{$doctor->doctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>
-                                    @endforeach
-                                </select>
+{{--                                <select class="select" name="doctorId" class="form-control">--}}
+{{--                                    <option>Select</option>--}}
+{{--                                    @foreach($doctors as $doctor)--}}
+{{--                                        <option value="{{$doctor->doctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
 
                             </div>
                         </div>

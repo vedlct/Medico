@@ -12,7 +12,14 @@ class AppointmentController extends Controller
 
 
     public function newPatient() {
-        return view('appointment.new_patient');
+        $doctors = Doctor::get();
+        return view ('appointment.new_patient', compact('doctors'));
+
+    }
+
+    public function oldPatient() {
+        $doctors = Doctor::get();
+        return view ('appointment.old_patient', compact('doctors'));
     }
 
 
@@ -21,11 +28,7 @@ class AppointmentController extends Controller
     }
 
     public function add(){
-        $doctors = Doctor::get();
-        $patients= Patient::get();
-        return view ('appointment.add', compact('doctors','patients'));
-
-
+        return view ('appointment.add');
     }
 
     public function checkoldpatient (Request $r){
