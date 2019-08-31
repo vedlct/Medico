@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
-            <form action="{{ route('appointment.new') }}" method="post">
+            <form enctype="multipart/form-data" id="appointmentAddForm" action="{{ route('appointment.insert') }}" onsubmit="return validateform()" method="post">
                 {{ csrf_field() }}
                 <div class="row">
 
@@ -146,55 +146,29 @@
 @endsection
 @section('js')
     <script>
-        $(function () {
-            $('#datetimepicker3').datetimepicker({
-                format: 'LT'
-            });
-            $('#datetimepicker').datetimepicker({
-                format: 'LT'
-            });
-        });
-    </script>
-    <script type="text/javascript">
-
-        function checkoldpatient() {
-
-            var phone =   document.getElementById("phone").value ;
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        function validateform() {
+            var validator = $("#appointmentAddForm").validate({
+                errorClass: 'errors',
+                rules: {
+                    age : "required",
+                },
+                highlight: function (element) {
+                    $(element).parent().addClass('error')
+                },
+                unhighlight: function (element) {
+                    $(element).parent().removeClass('error')
                 }
             });
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            if (validator.form()) {
+                return true;
 
-            $.ajax({
-                type: "post",
-                url: "{{route('checkoldpatient')}}",
-                data: {phone: phone},
-                success: function (data) {
+            }else {
 
-                    document.getElementById('firstName').value = data.firstName;
-                    document.getElementById('lastName').value = data.lastName;
-                    document.getElementById('age').value = data.age;
-                    document.getElementById('address').value = data.address;
-                    document.getElementById('email').value = data.email;
-
-                    if (data.gender == 1){
-                        document.getElementById('genderMale').value = 1;
-                        $("#genderMale").prop("checked", true);
-                    }else {
-                        document.getElementById('genderFeMale').value = 2;
-                        $("#genderFeMale").prop("checked", true);
-
-                    }
-
-
-                }
-
-            });
+                return false;
+            }
         }
-    </script>
 
+    </script>
 @endsection
 
 

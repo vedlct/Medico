@@ -18,6 +18,7 @@
                         <th>Appointment ID</th>
                         <th>Patient Name</th>
                         <th>Age</th>
+                        <th>Gender</th>
                         <th>Doctor Name</th>
                         <th>Department</th>
                         <th>Appointment Date</th>
