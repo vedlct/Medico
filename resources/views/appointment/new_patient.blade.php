@@ -111,17 +111,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Date</label>
-                            <div class="cal-icon">
-                                <input type="text" class="form-control datetimepicker">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             <label>Time</label>
                             <div class="time-icon">
-                                <input type="text" class="form-control " id="datetimepicker3">
+                                <input type="text" class="form-control " id="datetimepicker4">
                             </div>
                         </div>
                     </div>
@@ -169,6 +161,17 @@
         }
 
     </script>
+
+
+    <script>
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+                format: 'LT'
+            });
+
+        });
+    </script>
+
 @endsection
 
 
