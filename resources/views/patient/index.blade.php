@@ -62,7 +62,6 @@
                     {data: 'gender', name: 'patient.gender'},
                     {data: 'address', name: 'patient.address'},
                     {data: 'phone', name: 'patient.phone'},
-                    {data: 'email', name: 'patient.email'},
                     { "data": function(data){
                             return '&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id="'+data.patientId+'"onclick="deletepatient(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>';},
                         "orderable": false, "searchable":false, "name":"action" },

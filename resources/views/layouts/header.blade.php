@@ -11,10 +11,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{url('public')}}/assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{url('public')}}/assets/css/font-awesome.min.css">
+    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{url('public')}}/assets/css/style.css">
 
     <link rel="stylesheet" type="text/css" href="{{url('public')}}/assets/css/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="{{url('public')}}/assets/css/bootstrap-datetimepicker.min.css">
+    {{--    <link rel="stylesheet" type="text/css" href="{{url('public')}}/assets/css/bootstrap-datetimepicker.min.css">--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
@@ -25,6 +26,7 @@
 
     <script src=" https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src=" https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
     <!--[if lt IE 9]>
     <script src="{{url('public')}}/assets/js/html5shiv.min.js"></script>
     <script src="{{url('public')}}/assets/js/respond.min.js"></script>
@@ -37,4 +39,7 @@
 
         }
     </style>
+
+    <meta charset="utf-8">
+    <title>JS Bin</title>
 </head>

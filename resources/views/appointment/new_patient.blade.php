@@ -1,6 +1,20 @@
 @extends('main')
 @section('content')
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <h3 class="page-title">New Patient Form</h3>
@@ -8,7 +22,8 @@
     </div>
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
-            <form enctype="multipart/form-data" id="appointmentAddForm" action="{{ route('appointment.insert') }}" onsubmit="return validateform()" method="post">
+            <div id="message"></div>
+            <form enctype="multipart/form-data" id="appointmentAddForm" action="{{ route('appointment.insert') }}" onsubmit="return checkappointtime()" method="post">
                 {{ csrf_field() }}
                 <div class="row">
 
@@ -36,18 +51,16 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-md-6">
+
                         <div class="form-group">
-                            <label>First Name <span class="text-danger">*</span></label>
-                            <input class="form-control" id="firstName" name="firstName" required type="text">
+                            <label>Patient Name<span class="text-danger">*</span></label>
+                            <input class="form-control" id="patientName" name="patientName" required type="text">
+
                         </div>
+
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" id="lastName" name="lastName" required type="text">
-                        </div>
-                    </div>
+
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Age<span class="text-danger">*</span></label>
@@ -66,7 +79,7 @@
                             </div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" required id="genderFeMale" name="gender" value="{{GENDER['Female']}}" class="form-check-input">Female
+                                    <input type="radio" required id="genderFemale" name="gender" value="{{GENDER['Female']}}" class="form-check-input">Female
                                 </label>
                             </div>
                         </div>
@@ -98,36 +111,57 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Doctor</label>
-                            <select class="select" name="doctorId" class="form-control">
-                                <option>Select</option>
+                            <select class="select" name="doctorId"  id="doctorId" class="form-control">
+                                <option value="">Select</option>
                                 @foreach($doctors as $doctor)
-                                    <option value="{{$doctor->doctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>
+                                    <option value="{{$doctor->doctorId}}">{{$doctor->fkdoctorId}}</option>
                                 @endforeach
                             </select>
 
                         </div>
+                        <span id="freetimetext"></span>
                     </div>
                 </div>
+
                 <div class="row">
+
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Time</label>
-                            <div class="time-icon">
-                                <input type="text" class="form-control " id="datetimepicker4">
+                            <label>Day</label>
+                            <select class="select" name="day"  id="day" class="form-control">
+                                <option value="">Select day</option>
+                                @foreach($days as $day)
+                                    <option value="{{$day->fkdoctorId}}">{{$day->day}}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+                        <span id="freetimetext"></span>
+                    </div>
+                </div>
+                <div class="container">
+                    <br><br><br>
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <label for="">Simple Date &amp; Time</label>
+                            <div class='input-group date' id='format'>
+                                <input type='text' class="form-control"/>
+                                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="row">
 
                 </div>
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea cols="30" rows="4" class="form-control"></textarea>
-                </div>
+
 
                 <div class="m-t-20 text-center">
-                    <button class="btn btn-primary submit-btn">Create Appointment</button>
+                    <button type="submit" class="btn btn-primary submit-btn" >Create Appointment</button>
 
                 </div>
 
@@ -158,19 +192,119 @@
 
                 return false;
             }
+
+           // checkappointment();
         }
 
     </script>
 
 
-    <script>
+    <script type="text/javascript">
         $(function () {
-            $('#datetimepicker4').datetimepicker({
-                format: 'LT'
+            $('#format').datetimepicker({
+                format:'Y-M-d'
             });
-
         });
     </script>
+
+    <script type="text/javascript">
+
+        {{--function checkappointment() {--}}
+        {{--    $.ajaxSetup({--}}
+        {{--        headers: {--}}
+        {{--            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+        {{--        }--}}
+        {{--    });--}}
+        {{--    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');--}}
+
+        {{--    --}}{{--$.ajax({--}}
+        {{--    --}}{{--    type: "post",--}}
+        {{--    --}}{{--    url: "{{route('checkappointment')}}",--}}
+        {{--    --}}{{--    data: {phone: phone},--}}
+        {{--    --}}{{--    success: function (data){--}}
+
+        {{--    --}}{{--        alert(data);--}}
+        {{--    --}}{{--        if(data.start_time <= data.appontment_time && data.end_time >= data.appontment_time){--}}
+
+        {{--    --}}{{--            $('#message').append('<p class ="alert">' +data.appointment_time+' </p>');--}}
+        {{--    --}}{{--        }--}}
+
+        {{--    --}}{{--        else{--}}
+        {{--    --}}{{--            return ('appointments');--}}
+        {{--    --}}{{--        }--}}
+
+
+
+
+        {{--    --}}{{--    }--}}
+        {{--    --}}{{--});--}}
+
+
+
+
+
+
+
+        function checkappointtime() {
+          var time =   $('#example6').val();
+            var doctorId = $('#doctorId').val();
+
+
+
+            if (doctorId!=""){
+
+
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+
+                $.ajax({
+                    type: "post",
+                    url: "{{route('checkappointmenttime')}}",
+                    data: {time: time, doctorId:doctorId},
+                    success: function (data){
+
+
+
+
+                           if (data.fkdoctorId == doctorId) {
+
+                              // alert("Doctor is not Free this time");
+                               $('#freetimetext').html("Doctor is not Free this time");
+                               return false;
+
+                           }else if ((data.trim()=='')){
+                               $('#freetimetext').html("Doctor is Free this time");
+                           }
+
+
+
+
+                    }
+                });
+
+            }else {
+
+                alert("No doctor selected");
+                $('#freetimetext').html("");
+
+            }
+
+
+
+
+        }
+
+    </script>
+
+
+
+
 
 @endsection
 

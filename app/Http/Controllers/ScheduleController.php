@@ -43,7 +43,7 @@ class ScheduleController extends Controller
             ->leftjoin('doctor','fkdoctorId','doctorId')->get();
 
         $datatables = Datatables::of($scheduleInfo);
-        return $datatables->make(true);
+        return $datatables -> make(true);
     }
 
     public function deleteSchedule(Request $request)
