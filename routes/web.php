@@ -38,8 +38,9 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('/patients','PatientController@index')->name('patients');
     Route::get('/patients/add','PatientController@add')->name('patients.add');
     Route::post('/patients/insert','PatientController@insert')->name('patient.insert');
-    Route::post('/patients/update','PatientController@update')->name('patient.update');
     Route::post('/patientsShow','PatientController@showAllPatientInfo')->name('patients.show');
+    Route::get('/patient-edit/{id}', 'PatientController@editPatient')->name('patient.edit');
+    Route::post('/patient/update','PatientController@update')->name('patient.update');
     Route::post('/patient-delete', 'PatientController@deletepatient')->name('patient.delete');
 
 
@@ -47,7 +48,7 @@ Route::group(['middleware'=>['auth']],function (){
 
 
 
-    Route::get('appointment','AppointmentController@index')->name('appointments');
+//    Route::get('appointment','AppointmentController@index')->name('appointments');
     Route::get('appointment/add','AppointmentController@add')->name('appointment.add');
     Route::get('appointment/new','AppointmentController@newPatient')->name('appointment.new');
     Route::post('appointment/show','AppointmentController@showAppointment')->name('appointment.show');
@@ -56,7 +57,8 @@ Route::group(['middleware'=>['auth']],function (){
 
     Route::get('appointment/old','AppointmentController@oldPatient')->name('appointment.old');
 
-    Route::get('/appointments','AppointmentController@index')->name('appointment');
+    Route::get('/appointment','AppointmentController@index')->name('appointment');
+    Route::post('/appointment','AppointmentController@insert')->name('appointment');
      // Route::view('/appointments','appointments')->name('appointments');
     Route::get('/appointment/add','AppointmentController@add')->name('appointment.add');
     Route::get('/appointment/add','AppointmentController@add')->name('appointment.add');
@@ -74,7 +76,9 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('schedule/insert', 'ScheduleController@insertdata')->name('schedule.insert');
     Route::post('show-schedule', 'ScheduleController@showSchedule')->name('schedule.datashow');
     Route::post('/schedule-delete', 'ScheduleController@deleteSchedule')->name('schedule.delete');
-    Route::post('/schedule-edit', 'ScheduleController@editSchedule')->name('schedule.edit');
+//    Route::post('/schedule-edit', 'ScheduleController@editSchedule')->name('schedule.edit');
+    Route::get('/schedule-edit/{id}', 'ScheduleController@editSchedule')->name('schedule.edit');
+    Route::post('/schedule-update', 'ScheduleController@updateSchedule')->name('schedule.update');
 
     Route::view('settings','settings')->name('settings');
 

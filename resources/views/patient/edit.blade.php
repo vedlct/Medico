@@ -10,25 +10,26 @@
     </div>
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
-            <form enctype="multipart/form-data" id="patientAddForm" action="{{route('patient.insert')}}" onsubmit="return validateform()" method="post" >
+            <form enctype="multipart/form-data" id="patientAddForm" action="{{ route('patient.update') }}" onsubmit="return validateform()" method="post" >
                 {{csrf_field()}}
+                <input type="hidden" name="patientId" id="patientId" value="{{ $patient->patientId }}">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>First Name <span class="text-danger">*</span></label>
-                            <input class="form-control" id="firstName" name="firstName" required type="text">
+                            <input class="form-control" id="firstName" name="firstName" value="{{ $patient->firstName }}" type="text"  >
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input class="form-control" id="lastName" name="lastName" required type="text">
+                            <input class="form-control" id="lastName" name="lastName" value="{{ $patient->lastName }}"  type="text" >
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Age<span class="text-danger">*</span></label>
-                            <input class="form-control" id="age" name="age" required type="text">
+                            <input class="form-control" id="age" name="age" value="{{ $patient->age }}"  type="text">
 
                         </div>
                     </div>
@@ -47,12 +48,17 @@
                             <label class="gen-label">Gender: <span class="text-danger">*</span></label>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" required id="genderMale" name="gender" value="{{GENDER['Male']}}" class="form-check-input">Male
+{{--                                    @if(GENDER['Male'] == 1) {--}}
+                                    <input type="radio" required id="genderMale" name="gender" value="{{GENDER['Male']}}" class="form-check-input"
+                                            @if($patient->gender == GENDER['Male']){{  'checked' }}@endif>Male
+{{--
+                                    }
+{{--                                    @endif--}}
                                 </label>
                             </div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" required id="genderFeMale" name="gender" value="{{GENDER['Female']}}" class="form-check-input">Female
+                                    <input type="radio" required id="genderFeMale" name="gender" value="{{GENDER['Female']}}" class="form-check-input" {{ $patient->gender == GENDER['Female'] ? 'checked' : '' }}>Female
                                 </label>
                             </div>
                         </div>
@@ -63,7 +69,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <textarea rows="5" id="address" name="address" class="form-control "></textarea>
+                                    <textarea rows="5" id="address" name="address" class="form-control " >{{ $patient->address }}</textarea>
                                 </div>
                             </div>
                             {{--<div class="col-sm-6 col-md-6 col-lg-3">--}}
@@ -102,7 +108,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Phone <span class="text-danger">*</span></label>
-                            <input class="form-control" required id="phone"name="phone" type="text">
+                            <input class="form-control" id="phone" type="text" name="phone" value="{{ $patient->phone }}" >
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -121,7 +127,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Email</label>
-                            <input class="form-control" required id="email"name="email" type="text">
+{{--                            <input class="form-control"  id="email" name="email" value="{{ $patient->email }}" type="text">--}}
                         </div>
                     </div>
                 </div>
@@ -131,7 +137,7 @@
                 {{--</div>--}}
 
                 <div class="m-t-20 text-center">
-                    <button class="btn btn-primary submit-btn">Create Patient Record</button>
+                    <button class="btn btn-primary submit-btn">Update Patient Record</button>
                 </div>
             </form>
         </div>
@@ -141,11 +147,21 @@
 @endsection
 @section('js')
     <script>
+
+
+
+
         function validateform() {
+
             var validator = $("#patientAddForm").validate({
                 errorClass: 'errors',
                 rules: {
+                    firstName : "required",
+                    lastName : "required",
                     age : "required",
+                    address : "required",
+                    phone : "required",
+                    email : "required"
                 },
                 highlight: function (element) {
                     $(element).parent().addClass('error')
@@ -154,14 +170,46 @@
                     $(element).parent().removeClass('error')
                 }
             });
+
+
+
             if (validator.form()) {
+                var age = parseInt(document.getElementById('age').value);
+
+                if ( !(age>0 && age<=100) ) {
+                    alert("The age must be a number between 1 and 100");
+                    return false;
+                    // break;
+                }
+                // else {
+                //     return true;
+                // }
+
                 return true;
 
-            }else {
+            }
 
+            else {
                 return false;
             }
+
+
+
         }
 
     </script>
+
+{{--    <script>--}}
+{{--        // var age = +document.getElementById('age').value;--}}
+{{--        // if (age>100) {--}}
+{{--        //     alert("Invalid Age");--}}
+{{--        //     return false;--}}
+{{--        // }--}}
+{{--        // return true;--}}
+
+
+{{--        --}}
+
+
+{{--    </script>--}}
 @endsection

@@ -42,7 +42,7 @@
 
 @endsection
 @section('js')
-    <script>
+    <script type="application/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -85,21 +85,24 @@
         function editSchedule(x)
         {
 
+            var id = $(x).data('panel-id2');
+            var url = '{{ route("schedule.edit", ":id") }}';
+            //alert(url);
+            var newUrl=url.replace(':id', id);
+            window.location.href = newUrl;
 
-            var id = $(x).data('panel-id');
 
+            {{--$.ajax({--}}
+            {{--    type: "post",--}}
+            {{--    url: "{{route('schedule.edit')}}",--}}
+            {{--    data: {id: id2},--}}
+            {{--    success: function (data) {--}}
 
-            $.ajax({
-                type: "post",
-                url: "{{route('schedule.edit')}}",
-                data: {id: id},
-                success: function (data) {
+            {{--        // alert(data);--}}
+            {{--        table.ajax.reload();--}}
+            {{--    }--}}
 
-                    // alert(data);
-                    table.ajax.reload();
-                }
-
-            });
+            {{--});--}}
 
         }
 

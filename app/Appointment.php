@@ -9,4 +9,5 @@ class Appointment extends Model
     public $timestamps = false;
     protected $table = 'appointment';
     protected $primaryKey = 'appointmentId';
+
 }
