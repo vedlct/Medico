@@ -28,6 +28,10 @@
                     </thead>
                     <tbody>
                     <tr>
+{{--                        @foreach($appointment as $app)--}}
+{{--                            <td>{{ $app->fkdoctorId }}</td>--}}
+{{--                        @endforeach--}}
+
                         <td>APT0001</td>
                         <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> Denise Stevens</td>
                         <td>35</td>

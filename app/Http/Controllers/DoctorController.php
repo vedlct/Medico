@@ -18,7 +18,7 @@ class DoctorController extends Controller
     }
     public function edit($id){
 
-        $doctors=Doctor::select('doctor.*','user.password')->leftJoin('user','user.userId','doctor.doctorId')->findOrfail($id);
+        $doctors=Doctor::select('doctor.*','us0er.password')->leftJoin('user','user.userId','doctor.doctorId')->findOrfail($id);
 
         return view('doctor.edit',compact('doctors'));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Doctor;
 use App\WorkingHour;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -58,11 +59,32 @@ class ScheduleController extends Controller
     {
         $schedule=WorkingHour::findOrFail($request->id);
 //        $schedule.day = $request->day;
+//        return $schedule;
+        $day=array(
+            'Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday');
 
-        return view('schedule.edit', compact('schedule'));
+        return view('schedule.edit', compact('schedule','day'));
 
 
 //        $schedule->delete();
+    }
+
+    public function updateSchedule(Request $request) {
+
+        $scheduleInfo = WorkingHour::select(DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname , DATE_FORMAT(`start_time`,'%h:%i %p') as start_time, DATE_FORMAT(`end_time`,'%h:%i %p') as end_time "), 'working_hourId','fkdoctorId','day')
+            ->leftjoin('doctor','fkdoctorId','doctorId')->get();
+//        $scheduleInfo->save();
+
+        $schedule = WorkingHour::findOrFail($request->working_hourId);
+        $schedule->start_time = Carbon::parse($request->start_time)->format('H:i:s');
+        $schedule->end_time = Carbon::parse($request->end_time)->format('H:i:s');
+        $schedule->day = $request->day;
+
+        $schedule->save();
+
+        return view('schedule.index', compact('schedule','scheduleInfo'));
+//        return redirect('schedule', compact('schedule'));
+
     }
 
 }

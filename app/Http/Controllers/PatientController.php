@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
 class PatientController extends Controller
@@ -42,7 +43,7 @@ class PatientController extends Controller
         // $patient->fkuserId=$user->userId;
 //        $patient->status = $r->status;
         $patient->save();
-        Session::flash('message', 'Patient List Created!');
+        Session::flash('message', 'New Patient Added!');
         Session::flash('alert-class', 'alert-success');
 
         return redirect()->route('patients');
@@ -63,20 +64,19 @@ class PatientController extends Controller
 
         $patient->save();
 
-        $patient->save();
+//        return $patient;
 
-        Session::flash('message', 'Doctor Updated!');
+        Session::flash('message', 'Patient Rocord Updated!');
         Session::flash('alert-class', 'alert-success');
 
-        return back();
+//        return back();
 
+            return redirect()->route('patients');
 
     }
 
-    public function edit($id)
+    public function editPatient($id)
     {
-
-
 
         $patient= Patient::findOrFail($id);
 
@@ -88,7 +88,15 @@ class PatientController extends Controller
 
     public function showAllPatientInfo()
     {
-        $patientInfo = patient::orderBy('patientId', 'ASC');
+
+
+        $patientInfo = Patient::select(DB::raw("concat(`patient`.`firstName`, ' ' ,`patient`.`lastName`) as fullname"),DB::raw("CASE WHEN gender = 1 THEN 'Male' WHEN gender = 2 THEN 'Female' END  AS gender"), 'patientId', 'age','address','phone','email')
+            ->orderBy('patientId', 'ASC')
+            ->get();
+
+//        $patientInfo = Patient::orderBy('patientId', 'ASC');
+//        $patientInfo = Patient::select('patientId');
+//        $patientInfo = Patient::select(DB::raw('patientId', 'ASC'))->get();
 
         $datatables = Datatables::of($patientInfo);
         return $datatables->make(true);
