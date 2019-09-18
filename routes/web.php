@@ -50,7 +50,12 @@ Route::group(['middleware'=>['auth']],function (){
 
 //    Route::get('appointment','AppointmentController@index')->name('appointments');
     Route::get('appointment/add','AppointmentController@add')->name('appointment.add');
-    Route::post('appointment/new','AppointmentController@newPatient')->name('appointment.new');
+    Route::get('appointment/new','AppointmentController@newPatient')->name('appointment.new');
+    Route::post('appointment/show','AppointmentController@showAppointment')->name('appointment.show');
+    Route::post('appointment/insert','AppointmentController@insert')->name('appointment.insert');
+    Route::post('appointment/delete', 'Appointment@deleteAppointment')->name('appointment.delete');
+
+    Route::get('appointment/old','AppointmentController@oldPatient')->name('appointment.old');
 
     Route::get('/appointment','AppointmentController@index')->name('appointment');
     Route::post('/appointment','AppointmentController@insert')->name('appointment');

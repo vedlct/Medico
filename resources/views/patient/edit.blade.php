@@ -17,13 +17,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>First Name <span class="text-danger">*</span></label>
-                            <input class="form-control" id="firstName" name="firstName" value="{{ $patient->firstName }}" type="text"  required>
+                            <input class="form-control" id="firstName" name="firstName" value="{{ $patient->firstName }}" type="text"  >
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input class="form-control" id="lastName" name="lastName" value="{{ $patient->lastName }}"  type="text" required>
+                            <input class="form-control" id="lastName" name="lastName" value="{{ $patient->lastName }}"  type="text" >
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -108,7 +108,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Phone <span class="text-danger">*</span></label>
-                            <input class="form-control" id="phone" type="text" name="phone" value="{{ $patient->phone }}" required>
+                            <input class="form-control" id="phone" type="text" name="phone" value="{{ $patient->phone }}" >
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -127,7 +127,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Email</label>
-                            <input class="form-control" required id="email" name="email" value="{{ $patient->email }}" type="text">
+                            <input class="form-control"  id="email" name="email" value="{{ $patient->email }}" type="text">
                         </div>
                     </div>
                 </div>
@@ -153,24 +153,15 @@
 
         function validateform() {
 
-            var age = parseInt(document.getElementById('age').value);
-
-
-            if ( !(age>0 && age<=100) ){
-                alert("The age must be a number between 1 and 100");
-                return false;
-                // break;
-            }
-            else {
-                return true;
-            }
-
-
-
             var validator = $("#patientAddForm").validate({
                 errorClass: 'errors',
                 rules: {
-                    age : "required"
+                    firstName : "required",
+                    lastName : "required",
+                    age : "required",
+                    address : "required",
+                    phone : "required",
+                    email : "required"
                 },
                 highlight: function (element) {
                     $(element).parent().addClass('error')
@@ -179,16 +170,28 @@
                     $(element).parent().removeClass('error')
                 }
             });
+
+
+
             if (validator.form()) {
+                var age = parseInt(document.getElementById('age').value);
+
+                if ( !(age>0 && age<=100) ) {
+                    alert("The age must be a number between 1 and 100");
+                    return false;
+                    // break;
+                }
+                // else {
+                //     return true;
+                // }
+
                 return true;
 
-            }else {
-
-                return false;
             }
 
-
-
+            else {
+                return false;
+            }
 
 
 
