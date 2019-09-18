@@ -31,6 +31,8 @@ class ScheduleController extends Controller
             $schedule->day = $day;
             $schedule->start_time = date('H:i ', strtotime($r->start_time));
             $schedule->end_time = date('H:i ', strtotime($r->end_time));
+            $schedule ->start_date = date('Y-m-d',strtotime($r->start_date));
+
             $schedule->save();
         }
 
@@ -39,7 +41,7 @@ class ScheduleController extends Controller
     }
 
     public function showSchedule() {
-        $scheduleInfo = WorkingHour::select(DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname , DATE_FORMAT(`start_time`,'%h:%i %p') as start_time, DATE_FORMAT(`end_time`,'%h:%i %p') as end_time "), 'working_hourId','fkdoctorId','day')
+        $scheduleInfo = WorkingHour::select(DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname , DATE_FORMAT(`start_time`,'%h:%i %p') as start_time, DATE_FORMAT(`end_time`,'%h:%i %p') as end_time, DATE_FORMAT(`start_date`,'%d-%m-%Y') as start_date"), 'working_hourId','fkdoctorId','day')
             ->leftjoin('doctor','fkdoctorId','doctorId')->get();
 
         $datatables = Datatables::of($scheduleInfo);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2019 at 03:00 PM
+-- Generation Time: Sep 16, 2019 at 10:10 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -78,14 +78,14 @@ CREATE TABLE `doctor` (
 --
 
 INSERT INTO `doctor` (`doctorId`, `firstName`, `lastName`, `degree`, `email`, `gender`, `phone`, `image`, `address`, `fkuserId`, `status`) VALUES
-(1, 'Test ', 'Doctor', NULL, 'mujtaba.rumi1@gmail.com', 1, '01680674598', '1Image.jpg', 'Shewrapara , Mirpur', 2, 0),
+(1, 'Bslajmskanska', 'Doctor', NULL, 'mujtaba.rumi1@gmail.com', 1, '01680674598', '1Image.jpg', 'Shewrapara , Mirpur', 2, 1),
 (2, 'doc1', 'RUMI', NULL, 'mujtaba.rumi1@gmail.com', 1, '1680674598', NULL, 'Shewrapara , Mirpur', 3, 0),
 (3, 'MD . MUJTABA', 'RUMI', NULL, 'mujtaba.rumi1@gmail.com', 1, '1680674598', NULL, 'Shewrapara , Mirpur', 4, 0),
 (5, 'MD . MUJTABA', 'RUMI', NULL, 'mujtaba.rumi1@gmail.com', 1, '1680674598', NULL, 'Shewrapara , Mirpur', 6, 0),
 (6, 'MD . MUJTABA', 'RUMI', NULL, 'mujtaba.rumi1@gmail.com', 1, '1680674598', NULL, 'Shewrapara , Mirpur', 7, 0),
 (7, 'MD . MUJTABA', 'RUMI', NULL, 'mujtaba.rumi1@gmail.com', 1, '1680674598', NULL, 'Shewrapara , Mirpur', 8, 0),
 (8, 'MD . MUJTABA', 'RUMI', NULL, 'mujtaba.rumi1@gmail.com', 1, '1680674598', NULL, 'Shewrapara , Mirpur', 9, 1),
-(9, 'MD . MUJTABA', 'RUMI', NULL, 'mujtaba.rumi1@gmail.com', 1, '1680674598', NULL, 'Shewrapara , Mirpur', 10, 1),
+(9, 'MD . MUJTABA', 'RUMI', NULL, 'mujtaba.rumi1@gmail.com', 1, '1680674598', NULL, 'Shewrapara , Mirpur', 10, 0),
 (10, 'Rararara', 'Lalalala', 'MBBS', 'admin@test.com', 1, '01942993375', NULL, 'qwefewgwergrg', 11, 1);
 
 -- --------------------------------------------------------
@@ -121,7 +121,6 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`patientId`, `firstName`, `lastName`, `age`, `gender`, `address`, `phone`) VALUES
-(1, 'Umar', 'Ekanto', 10, 1, 'qewfewfwef', '01942993375'),
 (2, 'Rifat', 'Abir', 20, 1, 'fefefe', '01942993375'),
 (3, 'Umar', 'Ekanto', 10, 1, 'wegeger', '01942993375'),
 (5, 'Rara', 'Lalla', 90, 1, 'fwefwef', '01917589434');
@@ -136,6 +135,13 @@ CREATE TABLE `services` (
   `servicesId` int(11) NOT NULL,
   `servicesName` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`servicesId`, `servicesName`) VALUES
+(1, 'company two');
 
 -- --------------------------------------------------------
 
@@ -163,7 +169,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`userId`, `firstName`, `lastName`, `email`, `password`, `phone`, `fkusertypeId`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Farzad', 'Rahman', 'admin@gmail.com', '$2y$10$UCH8hBMvfPAfU237Dq4Tf.xKz5S/n8iH4Lf4q2bwo7ymIi6wXyime', '01731893442', 1, 1, 'dXOWz16jlsoHkCBOXjmf1DDSFzBSwMrq5mVqddSyisbkW9mWhwa87znUNukE', '2019-05-22 08:35:59', NULL),
-(2, 'MD . MUJTABA', 'RUMI', 'mujtaba.rumi1@gmail.com', '159', '01680674598', 3, 0, NULL, '2019-05-23 02:33:26', '2019-05-23 05:07:11'),
+(2, 'Bslajmskanska', 'Doctor', 'mujtaba.rumi1@gmail.com', '1234', '01680674598', 3, 1, NULL, '2019-05-23 02:33:26', '2019-09-09 00:24:07'),
 (3, 'MD . MUJTABA', 'RUMI', 'mujtaba.rumi1@gmail.com', '123456', '1680674598', 3, 0, NULL, '2019-05-23 03:12:33', '2019-09-06 02:56:21'),
 (4, 'MD . MUJTABA', 'RUMI', 'mujtaba.rumi1@gmail.com', '123456', '1680674598', 3, 0, NULL, '2019-05-23 03:12:45', '2019-09-06 02:56:25'),
 (5, 'MD . MUJTABA', 'RUMI', 'mujtaba.rumi1@gmail.com', '123456', '1680674598', 3, 0, NULL, '2019-05-23 03:12:56', '2019-09-06 02:56:28'),
@@ -171,7 +177,7 @@ INSERT INTO `user` (`userId`, `firstName`, `lastName`, `email`, `password`, `pho
 (7, 'MD . MUJTABA', 'RUMI', 'mujtaba.rumi1@gmail.com', '789', '1680674598', 3, 0, NULL, '2019-05-23 03:14:31', '2019-09-06 02:56:34'),
 (8, 'MD . MUJTABA', 'RUMI', 'mujtaba.rumi1@gmail.com', '258', '1680674598', 3, 0, NULL, '2019-05-23 03:15:11', '2019-09-06 02:56:38'),
 (9, 'MD . MUJTABA', 'RUMI', 'mujtaba.rumi1@gmail.com', '159', '1680674598', 3, 1, NULL, '2019-05-23 03:15:59', '2019-05-23 03:15:59'),
-(10, 'MD . MUJTABA', 'RUMI', 'mujtaba.rumi1@gmail.com', '147', '1680674598', 3, 1, NULL, '2019-05-23 03:16:38', '2019-05-23 03:16:38'),
+(10, 'MD . MUJTABA', 'RUMI', 'mujtaba.rumi1@gmail.com', '147', '1680674598', 3, 0, NULL, '2019-05-23 03:16:38', '2019-09-09 00:26:45'),
 (11, 'Rararara', 'Lalalala', 'admin@test.com', '123456', '01942993375', 3, 1, NULL, '2019-09-06 02:59:12', '2019-09-06 02:59:12');
 
 -- --------------------------------------------------------
@@ -205,17 +211,18 @@ CREATE TABLE `working_hour` (
   `fkdoctorId` int(11) NOT NULL,
   `day` varchar(45) DEFAULT NULL,
   `start_time` time DEFAULT NULL,
-  `end_time` time DEFAULT NULL
+  `end_time` time DEFAULT NULL,
+  `start_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `working_hour`
 --
 
-INSERT INTO `working_hour` (`working_hourId`, `fkdoctorId`, `day`, `start_time`, `end_time`) VALUES
-(1, 2, 'Monday', '11:00:00', '18:00:00'),
-(3, 10, 'Tuesday', '12:00:00', '12:15:00'),
-(4, 10, 'Thursday', '16:50:00', '16:50:00');
+INSERT INTO `working_hour` (`working_hourId`, `fkdoctorId`, `day`, `start_time`, `end_time`, `start_date`) VALUES
+(6, 1, 'Tuesday', '11:56:00', '11:56:00', '2019-09-19'),
+(7, 1, 'Wednesday', '11:58:00', '11:58:00', '2019-10-17'),
+(8, 2, 'Wednesday', '12:59:00', '12:59:00', '2019-11-14');
 
 --
 -- Indexes for dumped tables
@@ -310,7 +317,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `servicesId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `servicesId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -328,7 +335,7 @@ ALTER TABLE `usertype`
 -- AUTO_INCREMENT for table `working_hour`
 --
 ALTER TABLE `working_hour`
-  MODIFY `working_hourId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `working_hourId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
