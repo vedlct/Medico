@@ -64,15 +64,7 @@
                     </div>
 
 
-                    <div>
 
-                        <p>Date: <input type="text" name="start_date" id="datepicker" required></p>
-
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea cols="30" rows="4" class="form-control"></textarea>
-                    </div>
                     <div class="form-group">
                         <label class="display-block">Schedule Status</label>
                         <div class="form-check form-check-inline">
@@ -115,48 +107,6 @@
 
 
 
-    <script>
-        $ (document).ready (function() {
-            var minDate = new Date();
-            var arrDisabledDates = {};
-            arrDisabledDates[new Date('09/22/2019')] = new Date('09/22/2019');
-            arrDisabledDates[new Date('10/22/2019')] = new Date('10/22/2019');
-            arrDisabledDates[new Date('09/25/2019')] = new Date('09/25/2019');
-            arrDisabledDates[new Date('10/20/2019')] = new Date('10/20/2019');
-            arrDisabledDates[new Date('10/9/2019')] = new Date('10/9/2019');
-            arrDisabledDates[new Date('10/14/2019')] = new Date('10/14/2019');
-            arrDisabledDates[new Date('12/22/2019')] = new Date('12/22/2019');
-            arrDisabledDates[new Date('11/22/2019')] = new Date('11/22/2019');
-            // var datesDisabled = new Date();
-            $("#datepicker").datepicker({
 
-
-                minDate: minDate,
-
-
-                onclose: function (selectedDate) {
-                    $('#datepicker').datepicker("option", "minDate", selectedDate);
-
-                },
-
-                beforeShowDay: function (dt) {
-
-                    var bDisable = arrDisabledDates[dt];
-
-                    if (bDisable)
-
-                        return [false, '', ''];
-
-                    else
-
-                        return [true, '', ''];
-
-                }
-
-            });
-
-
-        });
-    </script>
 
 @endsection

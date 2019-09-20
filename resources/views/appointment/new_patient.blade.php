@@ -114,22 +114,7 @@
                     </div>
                 </div>
 
-                <div class="row">
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Date</label>
-                            <select class="select" name="start_date" id="start_date" class="form-control">
-                                <option value="">Select</option>
-                                @foreach($dates as $date)
-                                    <option value="{{$date->fkdoctorId}}">{{$date->start_date}}</option>
-                                @endforeach
-                            </select>
-
-                        </div>
-                        <span id="freetimetext"></span>
-                    </div>
-                </div>
 
                 <div class="row">
 

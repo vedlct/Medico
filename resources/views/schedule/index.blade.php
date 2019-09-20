@@ -21,7 +21,6 @@
                             <th>Available Days</th>
                             <th>Start Time</th>
                             <th>End Time</th>
-                            <th>Date</th>
 
 {{--                            <th>Status</th>--}}
                             <th >Action</th>
@@ -69,7 +68,6 @@
                     {data: 'day', name: 'day'},
                     {data: 'start_time', name: 'start_time' },
                     {data: 'end_time', name: 'end_time'},
-                    {data: 'start_date', name:'start_date'},
 
                     { "data": function(data) {
                             return '&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id="'+data.working_hourId+'"onclick="deleteSchedule(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id2="'+data.working_hourId+'"onclick="editSchedule(this)"><i class="fa fa-edit" aria-hidden="true"></i></a> ';

@@ -21,8 +21,7 @@ class AppointmentController extends Controller
         $doctors = WorkingHour::select('fkdoctorId')->leftjoin('doctor','fkdoctorId','doctorId')->get();
         $patients =  Patient::get();
         $days = WorkingHour::get();
-        $dates = WorkingHour::get();
-        return view ('appointment.new_patient', compact('doctors','patients','days','dates'));
+        return view ('appointment.new_patient', compact('doctors','patients','days'));
 
 
     }
@@ -44,7 +43,6 @@ class AppointmentController extends Controller
         $appointment->fkpatientId = $r->patientName;
         $appointment->fkdoctorId = $r->doctorId;
         $appointment->address = $r->address;
-        $appointment->start_date = $r->start_date;
 //        $appointment->phone = $r->phone;
         $appointment->save();
         Session::flash('message', 'Appointment Created!');
@@ -67,15 +65,7 @@ class AppointmentController extends Controller
         return view ('appointment.index');
     }
 
-    public function insert(Request $request){
 
-        $appointment = new Appointment();
-        $appointment->fkdoctorId = $request->doctorId;
-//        $appoinment->fkpatientId = $request->patientId;
-        $appointment->save();
-
-        return view('appointment.index', compact('appointment'));
-    }
 
     public function add(){
 
