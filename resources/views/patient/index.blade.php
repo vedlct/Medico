@@ -1,6 +1,5 @@
 @extends('main')
 @section('content')
-
     <div class="row">
         <div class="col-sm-4 col-3">
             <h4 class="page-title">Patients</h4>
@@ -16,7 +15,7 @@
                     <thead>
                     <tr>
                         <th>Firstname</th>
-                        <th>Lastname</th>
+                        {{--                        <th>Lastname</th>--}}
                         <th>Age</th>
                         <th>Gender</th>
                         <th>Address</th>
@@ -29,7 +28,6 @@
         </div>
     </div>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-
 @endsection
 @section('js')
     <script>
@@ -52,14 +50,12 @@
                     },
                 },
                 columns: [
-                    {data: 'firstName', name: 'firstName'},
-                    {data: 'lastName', name: 'lastName'},
+                    {data: 'fullname', name: 'fullname'},
                     // {data: 'lastName', name: 'lastName'},
                     {data: 'age', name: 'age'},
                     {data: 'gender', name: 'gender'},
                     {data: 'address', name: 'address'},
                     {data: 'phone', name: 'phone'},
-                    // {data: 'email', name: 'email'},
                     {
                         "data": function(data) {
                             return '&nbsp;&nbsp;<a style="cursor: pointer; color: red" data-panel-id="'+data.patientId+'"onclick="deletepatient(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a style="cursor: pointer; color: deepskyblue" data-panel-id2="'+data.patientId+'"onclick="editpatient(this)"><i class="fa fa-edit" aria-hidden="true"></i></a>';},
@@ -73,7 +69,7 @@
             var id = $(x).data('panel-id2');
             var url = '{{route("patient.edit", ":id") }}';
             // alert(id);
-            var newUrl=url.replace(':id', id);
+            var newUrl = url.replace(':id', id);
             window.location.href = newUrl;
             {{--$.ajax({--}}
             {{--    type: "post",--}}
@@ -90,7 +86,7 @@
             var id = $(x).data('panel-id');
             $.ajax({
                 type: "post",
-                url: "{{route('patient.delete')}}",
+                url: "{{route( 'patient.delete' )}}",
                 data: {id: id},
                 success: function (data) {
                     // alert(data);
@@ -99,8 +95,4 @@
             });
         }
     </script>
-
-
-
-
 @endsection

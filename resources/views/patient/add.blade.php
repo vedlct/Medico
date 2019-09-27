@@ -1,8 +1,5 @@
 @extends('main')
-
 @section('content')
-
-
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <h4 class="page-title">Add Patient Information</h4>
@@ -29,19 +26,14 @@
                         <div class="form-group">
                             <label>Age<span class="text-danger">*</span></label>
                             <input class="form-control" id="age" name="age" required type="text">
-
                         </div>
                     </div>
                     <div class="col-sm-6">
-
                     </div>
                     <div class="col-sm-6">
-
                     </div>
                     <div class="col-sm-6">
-
                     </div>
-
                     <div class="col-sm-6">
                         <div class="form-group gender-select">
                             <label class="gen-label">Gender: <span class="text-danger">*</span></label>
@@ -57,7 +49,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-12">
@@ -66,7 +57,6 @@
                                     <textarea rows="5" id="address" name="address" class="form-control "></textarea>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -88,26 +78,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input class="form-control" required id="email"name="email" type="text">
-                        </div>
-                    </div>
+
                 </div>
                 {{--<div class="form-group">--}}
                 {{--<label>Short Biography</label>--}}
                 {{--<textarea class="form-control" rows="3" cols="30"></textarea>--}}
                 {{--</div>--}}
-
                 <div class="m-t-20 text-center">
                     <button class="btn btn-primary submit-btn">Create Patient Record</button>
                 </div>
             </form>
         </div>
     </div>
-
-
 @endsection
 @section('js')
     <script>
@@ -126,12 +108,9 @@
             });
             if (validator.form()) {
                 return true;
-
             }else {
-
                 return false;
             }
         }
-
     </script>
 @endsection

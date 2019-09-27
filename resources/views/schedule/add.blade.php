@@ -31,7 +31,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Available Days</label>
-                                <select name="days[]" class="select" multiple="multiple">
+                                <select name="days[]" class="select" multiple="multiple" required>
                                     <option>Select Days</option>
                                     <option value="Sunday">Sunday</option>
                                     <option value="Monday">Monday</option>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="m-t-20 text-center">
-                        <button type="submit" class="btn btn-primary submit-btn">Create Schedule</button>
+                        <button type="submit" id="btnCompare" value="compare" onclick="compare()" class="btn btn-primary submit-btn">Create Schedule</button>
                     </div>
                 </form>
             </div>
@@ -102,6 +102,30 @@
                 format: 'LT'
             });
         });
+    </script>
+
+
+    <script type="text/javascript">
+
+        function compare(){
+
+            var str_time = document.getElementById("start_time").value;
+            var end_time  = document.getElementById("end_time").value;
+
+            if(str_time < end_time){
+                alert("Start time can not be less than End Time");
+            }
+
+            if(str_time  == end_time ){
+
+                alert("Start time can not be equal to end time ");
+            }
+
+
+        }
+
+
+
     </script>
 
 

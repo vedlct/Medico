@@ -26,7 +26,7 @@
                         <th class="text-right">Action</th>
                     </tr>
                     </thead>
-                
+
                 </table>
             </div>
         </div>
