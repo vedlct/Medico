@@ -27,7 +27,6 @@ class PatientController extends Controller
         $patient->gender = $r->gender;
         $patient->address = $r->address;
         $patient->phone = $r->phone;
-        $patient->email = $r->email;
         // $patient->fkuserId=$user->userId;
 //        $patient->status = $r->status;
         $patient->save();
