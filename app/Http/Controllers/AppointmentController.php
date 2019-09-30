@@ -18,7 +18,9 @@ class AppointmentController extends Controller
 
 
     public function newPatient() {
-        $doctors = WorkingHour::select('fkdoctorId')->leftjoin('doctor','fkdoctorId','doctorId')->get();
+
+//        $doctors = Doctor::select('doctorId', 'firstName', 'lastName')->get();
+        $doctors = WorkingHour::select('fkdoctorId','doctorId','firstName','lastName')->leftjoin('doctor','fkdoctorId','doctorId')->get();
         $patients =  Patient::get();
         $days = WorkingHour::get();
         return view ('appointment.new_patient', compact('doctors','patients','days'));
@@ -37,7 +39,6 @@ class AppointmentController extends Controller
         $appointment = new Appointment();
         $appointment->phone = $r->phone;
         $appointment->age = $r->age;
-        $appointment->patientName = $r->patientName;
         $appointment->email = $r->email;
         $appointment->gender = $r->gender;
         $appointment->fkpatientId = $r->patientId;
@@ -48,11 +49,11 @@ class AppointmentController extends Controller
         Session::flash('message', 'Appointment Created!');
         Session::flash('alert-class', 'alert-success');
 
-        return redirect()->route('appointments');
+        return redirect()->route('appointment');
     }
 
     public function showAppointment() {
-        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname , DATE_FORMAT(`appointment_time`,'%h:%i %p') as appointment_time "), 'appointment','fkdoctorId')
+        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname , (`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname , DATE_FORMAT(`appointment_time`,'%h:%i %p') as appointment_time "), 'appointment','fkdoctorId')
             ->leftjoin('doctor','fkdoctorId','doctorId')
             ->leftjoin('patient','fkpatientId','patientId')->get();
 

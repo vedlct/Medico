@@ -14,7 +14,7 @@
                 <table id="patientstable" class="table table-border table-striped custom-table mb-0">
                     <thead>
                     <tr>
-                        <th>Firstname</th>
+                        <th>Fullname</th>
                         {{--                        <th>Lastname</th>--}}
                         <th>Age</th>
                         <th>Gender</th>

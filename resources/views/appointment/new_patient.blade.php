@@ -20,7 +20,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Phone <span class="text-danger">*</span></label>
-                            <input class="form-control" required id="phone" name="phone" type="text">
+                            <input class="form-control" required id="phone" name="phone" type="text" >
 
                             {{--                            <button type="button" class="btn btn-success" onclick="checkoldpatient()">check</button>--}}
                         </div>
@@ -44,7 +44,13 @@
 
                         <div class="form-group">
                             <label>Patient Name<span class="text-danger">*</span></label>
-                            <input class="form-control" id="patientName" name="patientName" required type="text">
+                            <select class="select" name="patientId" id="patientId" class="form-control" required>
+                                <option value="">Select</option>
+                                @foreach($patients as $patient)
+                                    <option value="{{$patient->patientId}}">{{$patient->firstName." ".$patient->lastName}}</option>
+                                @endforeach
+                            </select>
+{{--                            <input class="form-control" id="patientName" name="patientName" required type="text">--}}
 
                         </div>
 
@@ -102,10 +108,10 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Doctor</label>
-                            <select class="select" name="doctorId" id="doctorId" class="form-control">
+                            <select class="select" name="doctorId" id="doctorId" class="form-control" required>
                                 <option value="">Select</option>
                                 @foreach($doctors as $doctor)
-                                    <option value="{{$doctor->doctorId}}">{{$doctor->fkdoctorId}}</option>
+                                    <option value="{{$doctor->fkdoctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>
                                 @endforeach
                             </select>
 
