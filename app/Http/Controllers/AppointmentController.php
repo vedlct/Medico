@@ -40,7 +40,7 @@ class AppointmentController extends Controller
         $appointment->patientName = $r->patientName;
         $appointment->email = $r->email;
         $appointment->gender = $r->gender;
-        $appointment->fkpatientId = $r->patientName;
+        $appointment->fkpatientId = $r->patientId;
         $appointment->fkdoctorId = $r->doctorId;
         $appointment->address = $r->address;
 //        $appointment->phone = $r->phone;
