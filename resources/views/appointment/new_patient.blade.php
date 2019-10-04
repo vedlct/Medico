@@ -40,20 +40,17 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
-
+                    <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Patient Name<span class="text-danger">*</span></label>
-                            <select class="select" name="patientId" id="patientId" class="form-control" required>
-                                <option value="">Select</option>
-                                @foreach($patients as $patient)
-                                    <option value="{{$patient->patientId}}">{{$patient->firstName." ".$patient->lastName}}</option>
-                                @endforeach
-                            </select>
-{{--                            <input class="form-control" id="patientName" name="patientName" required type="text">--}}
-
+                            <label>First Name <span class="text-danger">*</span></label>
+                            <input class="form-control" id="firstName" name="firstName" required type="text">
                         </div>
-
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input class="form-control" id="lastName" name="lastName" required type="text">
+                        </div>
                     </div>
 
                     <div class="col-sm-6">

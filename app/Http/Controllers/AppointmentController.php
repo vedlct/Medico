@@ -38,6 +38,8 @@ class AppointmentController extends Controller
 
         $appointment = new Appointment();
         $appointment->phone = $r->phone;
+        $appointment->firstName = $r->firstName;
+        $appointment->lastName = $r->lastName;
         $appointment->age = $r->age;
         $appointment->email = $r->email;
         $appointment->gender = $r->gender;

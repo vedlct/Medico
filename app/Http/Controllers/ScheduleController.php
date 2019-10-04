@@ -7,7 +7,7 @@ use App\WorkingHour;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
 
 class ScheduleController extends Controller
@@ -83,6 +83,9 @@ class ScheduleController extends Controller
         $schedule->save();
 
         return view('schedule.index', compact('schedule','scheduleInfo'));
+
+        Session::flash('message', 'Doctor Shcedule Updated!');
+        Session::flash('alert-class', 'alert-success');
 //        return redirect('schedule', compact('schedule'));
 
     }
