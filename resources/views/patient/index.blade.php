@@ -15,11 +15,11 @@
                     <thead>
                     <tr>
                         <th>Fullname</th>
-                        {{--                        <th>Lastname</th>--}}
                         <th>Age</th>
                         <th>Gender</th>
                         <th>Address</th>
                         <th>Phone</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -56,6 +56,8 @@
                     {data: 'gender', name: 'gender'},
                     {data: 'address', name: 'address'},
                     {data: 'phone', name: 'phone'},
+                    {data: 'email', name:'email'},
+
                     {
                         "data": function(data) {
                             return '&nbsp;&nbsp;<a style="cursor: pointer; color: red" data-panel-id="'+data.patientId+'"onclick="deletepatient(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a style="cursor: pointer; color: deepskyblue" data-panel-id2="'+data.patientId+'"onclick="editpatient(this)"><i class="fa fa-edit" aria-hidden="true"></i></a>';},

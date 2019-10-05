@@ -38,14 +38,14 @@ class AppointmentController extends Controller
 
         $appointment = new Appointment();
         $appointment->phone = $r->phone;
-        $appointment->firstName = $r->firstName;
-        $appointment->lastName = $r->lastName;
+
         $appointment->age = $r->age;
         $appointment->email = $r->email;
         $appointment->gender = $r->gender;
         $appointment->fkpatientId = $r->patientId;
         $appointment->fkdoctorId = $r->doctorId;
         $appointment->address = $r->address;
+        $appointment->status = $r->status;
 //        $appointment->phone = $r->phone;
         $appointment->save();
         Session::flash('message', 'Appointment Created!');
@@ -55,7 +55,7 @@ class AppointmentController extends Controller
     }
 
     public function showAppointment() {
-        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname , (`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname , DATE_FORMAT(`appointment_time`,'%h:%i %p') as appointment_time "), 'appointment','fkdoctorId')
+        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname , (`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname") , 'appointment','fkdoctorId','fkpatientId','age','email','phone','address','status')
             ->leftjoin('doctor','fkdoctorId','doctorId')
             ->leftjoin('patient','fkpatientId','patientId')->get();
 

@@ -139,7 +139,7 @@
                 </div>
 
                 <div class="m-t-20 text-center">
-                    <button class="btn btn-primary submit-btn">Create Re-Appointment</button>
+                    <button class="btn btn-primary submit-btn">Create Appointment</button>
 
                 </div>
 

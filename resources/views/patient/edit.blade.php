@@ -30,6 +30,13 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Email<span class="text-danger">*</span></label>
+                            <input class="form-control" id="email" name="email" value="{{ $patient->email }}"  type="text">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
                     </div>
                     <div class="col-sm-6">
                     </div>

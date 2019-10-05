@@ -22,6 +22,7 @@
                         <th>Doctor Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Status</th>
                         <th>Address</th>
                         <th>Action</th>
                     </tr>
@@ -62,6 +63,7 @@
                     {data: 'doctorname', name: 'appointment.doctorname'},
                     {data: 'email', name: 'appointment.email'},
                     {data: 'phone', name: 'appointment.phone'},
+                    {data: 'status', name: 'appointment.status'},
                     // {data: 'patientName', name: 'appointment.patientName'},
                     {data: 'address', name: 'appointment.address'},
                     { "data": function(data){

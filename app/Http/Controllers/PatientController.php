@@ -27,6 +27,8 @@ class PatientController extends Controller
         $patient->gender = $r->gender;
         $patient->address = $r->address;
         $patient->phone = $r->phone;
+        $patient->email = $r->email;
+
         // $patient->fkuserId=$user->userId;
 //        $patient->status = $r->status;
         $patient->save();
@@ -43,6 +45,8 @@ class PatientController extends Controller
         $patient->gender = $r->gender;
         $patient->address = $r->address;
         $patient->phone = $r->phone;
+        $patient->email = $r->email;
+
 //        $patient->fkuserId=$user->userId;
         //$patient->status=$r->status;
         $patient->save();
@@ -59,7 +63,7 @@ class PatientController extends Controller
     }
     public function showAllPatientInfo()
     {
-        $patientInfo = Patient::select(DB::raw("concat(`patient`.`firstName`, ' ' ,`patient`.`lastName`) as fullname"),DB::raw("CASE WHEN gender = 1 THEN 'Male' WHEN gender = 2 THEN 'Female' END  AS gender"), 'patientId', 'age','address','phone')
+        $patientInfo = Patient::select(DB::raw("concat(`patient`.`firstName`, ' ' ,`patient`.`lastName`) as fullname"),DB::raw("CASE WHEN gender = 1 THEN 'Male' WHEN gender = 2 THEN 'Female' END  AS gender"), 'patientId', 'age','address','phone','email')
             ->orderBy('patientId', 'ASC')
             ->get();
 //        $patientInfo = Patient::orderBy('patientId', 'ASC');

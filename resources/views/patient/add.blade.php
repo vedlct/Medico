@@ -59,6 +59,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <textarea rows="5" id="email" name="email" class="form-control "></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Phone <span class="text-danger">*</span></label>
