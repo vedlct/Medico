@@ -57,7 +57,6 @@
                     {data: 'address', name: 'address'},
                     {data: 'phone', name: 'phone'},
                     {data: 'email', name:'email'},
-
                     {
                         "data": function(data) {
                             return '&nbsp;&nbsp;<a style="cursor: pointer; color: red" data-panel-id="'+data.patientId+'"onclick="deletepatient(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a style="cursor: pointer; color: deepskyblue" data-panel-id2="'+data.patientId+'"onclick="editpatient(this)"><i class="fa fa-edit" aria-hidden="true"></i></a>';},
@@ -86,15 +85,32 @@
         function deletepatient(x)
         {
             var id = $(x).data('panel-id');
-            $.ajax({
-                type: "post",
-                url: "{{route( 'patient.delete' )}}",
-                data: {id: id},
-                success: function (data) {
-                    // alert(data);
-                    table.ajax.reload();
+
+            $.confirm({
+                title: "Confirm",
+                content: "Are You Sure?",
+                buttons: {
+                    confirm: function () {
+                        $.ajax({
+                            type: "post",
+                            url: "{{route( 'patient.delete' )}}",
+                            data: {id: id},
+                            success: function (data) {
+                                // alert(data);
+                                $.alert({
+                                    title: "Success",
+                                    content: "Patient Deleted"
+                                });
+                                table.ajax.reload();
+                            }
+                        });
+                    },
+                    cancel:function () {
+
+                    }
                 }
             });
+
         }
     </script>
 @endsection

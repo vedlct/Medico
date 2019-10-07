@@ -26,7 +26,7 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('doctors','DoctorController@index')->name('doctors');
     Route::view('doctor/add','doctor.add')->name('doctor.add');
     Route::get('doctor/edit/{id}','DoctorController@edit')->name('doctor.edit');
-    Route::get('doctor/update/{id}','DoctorController@delete')->name('doctor.delete');
+    Route::get('doctor/delete/{id}','DoctorController@delete')->name('doctor.delete');
 
     Route::post('doctor/insert','DoctorController@insert')->name('doctor.insert');
     Route::post('doctor/update','DoctorController@update')->name('doctor.update');
@@ -34,6 +34,7 @@ Route::group(['middleware'=>['auth']],function (){
 
 //    Route::view('/patients','patients')->name('patients');
 //    Route::post('patientShow','PatientController@showAllPatientInfo')->name('patients.show');
+    Route::get('/patient-customid','PatientController@getNextOrderNumber')->name('patient.customid');
 
     Route::get('/patients','PatientController@index')->name('patients');
     Route::get('/patients/add','PatientController@add')->name('patients.add');
@@ -46,9 +47,10 @@ Route::group(['middleware'=>['auth']],function (){
 
 
 
-
-
 //    Route::get('appointment','AppointmentController@index')->name('appointments');
+
+
+    Route::get('/appointment','AppointmentController@index')->name('appointment');
     Route::get('appointment/add','AppointmentController@add')->name('appointment.add');
     Route::get('appointment/new','AppointmentController@newPatient')->name('appointment.new');
     Route::post('appointment/show','AppointmentController@showAppointment')->name('appointment.show');
@@ -57,7 +59,6 @@ Route::group(['middleware'=>['auth']],function (){
 
     Route::get('appointment/old','AppointmentController@oldPatient')->name('appointment.old');
 
-    Route::get('/appointment','AppointmentController@index')->name('appointment');
     Route::post('/appointment','AppointmentController@insert')->name('appointment');
      // Route::view('/appointments','appointments')->name('appointments');
     Route::get('/appointment/add','AppointmentController@add')->name('appointment.add');

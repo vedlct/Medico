@@ -28,7 +28,6 @@ class PatientController extends Controller
         $patient->address = $r->address;
         $patient->phone = $r->phone;
         $patient->email = $r->email;
-
         // $patient->fkuserId=$user->userId;
 //        $patient->status = $r->status;
         $patient->save();
@@ -46,7 +45,6 @@ class PatientController extends Controller
         $patient->address = $r->address;
         $patient->phone = $r->phone;
         $patient->email = $r->email;
-
 //        $patient->fkuserId=$user->userId;
         //$patient->status=$r->status;
         $patient->save();
