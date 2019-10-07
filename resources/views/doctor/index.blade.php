@@ -30,7 +30,7 @@
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{route('doctor.edit',['id'=>$d->doctorId])}}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                            <a class="dropdown-item" onclick="return confirm('Are you sure?')" href="{{route('doctor.delete',['id'=>$d->doctorId])}}"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                            <a class="dropdown-item" onclick="return confirm('Are you sure?')" href="{{ route('doctor.delete',['id'=>$d->doctorId]) }}"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@
             <div class="col-sm-12">
                 <div align="center" class="see-all">
                     {{$doctors->links()}}
-                    {{--<a class="see-all-btn" href="javascript:void(0);">Load More</a>--}}
+{{--                    <a class="see-all-btn" href="javascript:void(0);">Load More</a>--}}
                 </div>
             </div>
         </div>

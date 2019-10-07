@@ -14,22 +14,22 @@ use Yajra\DataTables\DataTables;
 class AppointmentController extends Controller
 {
 
-
+    public function index(){
+        return view ('appointment.index');
+    }
 
     public function newPatient() {
         $doctors = Doctor::get();
         return view ('appointment.new_patient', compact('doctors'));
-
     }
-
 //    public function oldPatient() {
 //        $doctors = Doctor::get();
 //        return view ('appointment.old_patient', compact('doctors'));
+
 //    }
 
     public function insert(Request $r)
     {
-
         $appointment = new Appointment();
         $appointment->firstName = $r->firstName;
         $appointment->lastName = $r->lastName;
@@ -56,19 +56,15 @@ class AppointmentController extends Controller
 
     }
 
-    public function index(){
-        return view ('appointment.index');
-    }
-
-    public function insert(Request $request){
-
-        $appointment = new Appointment();
-        $appointment->fkdoctorId = $request->doctorId;
-//        $appoinment->fkpatientId = $request->patientId;
-        $appointment->save();
-
-        return view('appointment.index', compact('appointment'));
-    }
+//    public function insert(Request $request) {
+//
+//        $appointment = new Appointment();
+//        $appointment->fkdoctorId = $request->doctorId;
+////        $appoinment->fkpatientId = $request->patientId;
+//        $appointment->save();
+//
+//        return view('appointment.index', compact('appointment'));
+//    }
 
     public function add(){
 
@@ -81,8 +77,6 @@ class AppointmentController extends Controller
 
     public function checkoldpatient (Request $r){
 
-
-
         $patient = Patient::where('phone', $r->phone)->first();
         return $patient;
 //        return view('appointment.add', compact('patient'));
@@ -90,14 +84,11 @@ class AppointmentController extends Controller
         $appointment = Patient::where('phone', $r->phone)->first();
         return $appointment;
 
-
     }
 
     public function deleteAppointment(Request $request)
     {
         $appointment=WorkingHour::findOrFail($request->id);
-
-
 
         $appointment->delete();
     }

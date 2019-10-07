@@ -15,7 +15,8 @@
                 <table id="patientstable" class="table table-border table-striped custom-table mb-0">
                     <thead>
                     <tr>
-                        <th>Firstname</th>
+                        <th>Patient ID</th>
+                        <th>Name</th>
 {{--                        <th>Lastname</th>--}}
                         <th>Age</th>
                         <th>Gender</th>
@@ -56,6 +57,7 @@
                 },
                 columns: [
 
+                    {data: 'patient_customId', name: 'patient_customId'},
                     {data: 'fullname', name: 'fullname'},
                     // {data: 'lastName', name: 'lastName'},
                     {data: 'age', name: 'age'},
@@ -71,16 +73,15 @@
 
             });
         });
+
         function editpatient(x)
         {
-
-
             // var id = $(x).data('panel-id2');
 
             var id = $(x).data('panel-id2');
             var url = '{{route("patient.edit", ":id") }}';
             // alert(id);
-            var newUrl=url.replace(':id', id);
+            var newUrl = url.replace(':id', id);
             window.location.href = newUrl;
 
 
@@ -101,21 +102,37 @@
         function deletepatient(x)
         {
 
-
             var id = $(x).data('panel-id');
 
+            $.confirm({
+                title: 'You Are Supposed to Delete',
+                content: 'Are You Sure?',
+                buttons: {
+                    confirm: function () {
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{route( 'patient.delete' )}}",
+                            data: {id: id},
+                            success: function () {
+                                $.alert({
+                                    // animationBounce: 2,
+                                    title: 'Success!',
+                                    content: 'Patient Deleted.',
+                                });
+                                // alert(data);
+                                table.ajax.reload();
+                            }
 
-            $.ajax({
-                type: "post",
-                url: "{{route('patient.delete')}}",
-                data: {id: id},
-                success: function (data) {
+                        });
+                    },
 
-                    // alert(data);
-                    table.ajax.reload();
+                    cancel: function() {
+
+                    }
+
                 }
-
             });
+
 
         }
     </script>

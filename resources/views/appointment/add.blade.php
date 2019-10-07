@@ -190,7 +190,6 @@
 {{--                                    @endforeach--}}
 {{--                                </select>--}}
 
-<<<<<<< HEAD
                 </form>
             </div>
         </div>

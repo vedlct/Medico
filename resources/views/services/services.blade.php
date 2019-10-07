@@ -14,7 +14,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" action="{{ route('services.insert') }}">
-                        @csrf
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -67,7 +67,7 @@
                     <thead>
                     <tr>
                         <th>Service Name</th>
-                        <th class="text-right">Action</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -137,7 +137,6 @@
                     serverSide: true,
                     stateSave: true,
 
-
                     "ajax": {
                         "url": "{!! route('services.getAllData') !!}",
                         "type": "POST",
@@ -150,8 +149,7 @@
 
                         {
                             "data": function (data) {
-                                return '&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id="' + data.patientId + '"onclick="deletepatient(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>';
-                            },
+                                return '&nbsp;&nbsp;<a style="cursor: pointer; color: rgba(236,39,50,0.98)" data-panel-id="' + data.servicesId + '" onclick="delete_data(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;&nbsp; <a style="cursor: pointer; color: #4881ecfa" data-panel-id2="' + data.servicesId + '" onclick="edit_data(this)"><i class="fa fa-edit" aria-hidden="true"></i></a>';},
                             "orderable": false, "searchable": false, "name": "action"},
                     ],
 
@@ -160,7 +158,8 @@
 
 
         function edit_data(x) {
-            id = $(x).data('panel-id');
+
+            id = $(x).data('panel-id2');
 
             $.ajax({
                 type: 'POST',
@@ -178,7 +177,7 @@
         }
 
         function delete_data(x) {
-            btn = $(x).data('panel-id');
+            var id = $(x).data('panel-id');
             $.confirm({
                 title: 'Confirm!',
                 content: 'Are you sure want to delete!',
@@ -191,22 +190,23 @@
                             cache: false,
                             data: {
                                 _token: "{{csrf_token()}}",
-                                'id': btn
+                                id: id
                             },
-                            success: function (data) {
+                            success: function () {
                                 $.alert({
-                                    animationBounce: 2,
+                                    // animationBounce: 2,
                                     title: 'Success!',
                                     content: 'Service Deleted.',
                                 });
-                                dataTable.ajax.reload();
+                                table.ajax.reload();
                             }
                         });
 
                     },
-                    cancel: function () {
+                    cancel: function() {
 
-                    },
+                    }
+
                 }
             });
         }

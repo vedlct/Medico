@@ -53,9 +53,9 @@
                 processing: true,
                 serverSide: true,
                 stateSave: true,
-                "ajax": {
-                    "url": "{!! route('schedule.datashow') !!}",
-                    "type": "POST",
+                ajax: {
+                    url: "{!! route('schedule.datashow') !!}",
+                    type: "POST",
                     data: function (d) {
                         d._token = "{{csrf_token()}}";
                     },
@@ -78,8 +78,7 @@
             });
         });
 
-        function editSchedule(x)
-        {
+        function editSchedule(x) {
 
             var id = $(x).data('panel-id2');
             var url = '{{ route("schedule.edit", ":id") }}';
@@ -102,21 +101,33 @@
 
         }
 
-        function deleteSchedule(x)
-        {
-
+        function deleteSchedule(x) {
 
             var id = $(x).data('panel-id');
 
+            $.confirm({
+                title: 'Confirm?',
+                content: 'Are you sure want to delete!',
+                buttons: {
+                    confirm: function () {
+                        $.ajax({
+                            type: "post",
+                            url: "{{route('schedule.delete')}}",
+                            data: {id: id},
+                            success: function () {
 
-            $.ajax({
-                type: "post",
-                url: "{{route('schedule.delete')}}",
-                data: {id: id},
-                success: function (data) {
+                                $.alert({
+                                    title: 'Success!',
+                                    content: 'Schedule Deleted.',
+                                });
+                                table.ajax.reload();
+                            }
 
-                    // alert(data);
-                    table.ajax.reload();
+                        });
+                    },
+                    cancel: function () {
+
+                    }
                 }
 
             });

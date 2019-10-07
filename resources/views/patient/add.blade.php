@@ -126,9 +126,8 @@
             });
             if (validator.form()) {
                 return true;
-
-            }else {
-
+            }
+            else {
                 return false;
             }
         }

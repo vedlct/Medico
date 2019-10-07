@@ -29,12 +29,14 @@ class ServiceController extends Controller
     }
 
     public function edit_service(Request $r){
-        $service = Services::findOrFail($r->id);
+//        dd($r);
+        $service = Services::find($r->id);
+//        dd($service);
         return view('services.service_edit')->with('service', $service);
     }
 
     public function update_service(Request $r){
-        $service = Services::findOrFail($r->id);
+        $service = Services::find($r->id);
         $service->servicesName = $r->name;
         $service->save();
 
@@ -43,8 +45,10 @@ class ServiceController extends Controller
         return back();
     }
 
-    public function delete_service(Request $r){
-        $service = Services::findOrFail($r->id);
+    public function delete_service(Request $r) {
+        $service = Services::find($r->id);
+
+//        return $service;
         $service->delete();
 
         Session::flash('message', 'Service Deleted!');

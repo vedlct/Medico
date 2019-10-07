@@ -49,7 +49,7 @@ class PatientController extends Controller
         return redirect()->route('patients');
     }
 
-    public function update(Request $r){
+    public function update(Request $r) {
          //$userType=UserType::where('usertypeName','patient')->first();
         $patient=Patient::findOrFail($r->patientId);
         $patient->firstName = $r->firstName;
@@ -62,6 +62,10 @@ class PatientController extends Controller
 //        $patient->fkuserId=$user->userId;
         //$patient->status=$r->status;
 
+//        $patient->save();
+
+
+        $patient->patient_customId = getNextOrderNumber();
         $patient->save();
 
 //        return $patient;
@@ -71,7 +75,7 @@ class PatientController extends Controller
 
 //        return back();
 
-            return redirect()->route('patients');
+        return redirect()->route('patients');
 
     }
 
@@ -80,8 +84,40 @@ class PatientController extends Controller
 
         $patient= Patient::findOrFail($id);
 
-        return view('patient.edit',compact('patient'));
+        return view('patient.edit', compact('patient'));
 
+    }
+
+    public function getNextOrderNumber()
+    {
+        $patient = new Patient();
+
+        // Get the last created order
+        $lastOrder = Patient::orderBy('patient_customId', 'desc')->first();
+
+        if ( ! $lastOrder )
+            // We get here if there is no order at all
+            // If there is no number set it to 0, which will be 1 at the end.
+
+            $number = 0;
+        else
+            $number = substr($lastOrder->patient_customId, 3);
+
+        // If we have ORD000001 in the database then we only want the number
+        // So the substr returns this 000001
+
+        // Add the string in front and higher up the number.
+        // the %05d part makes sure that there are always 6 numbers in the string.
+        // so it adds the missing zero's when needed.
+
+        $ord = 'ORD' . sprintf('%06d', intval($number) + 1);
+//        return 'ORD' . sprintf('%06d', intval($number) + 1);
+
+        $patient->patient_customId = $ord;
+        $patient->save();
+
+
+//        return $ord;
     }
 
 
@@ -89,8 +125,8 @@ class PatientController extends Controller
     public function showAllPatientInfo()
     {
 
-
-        $patientInfo = Patient::select(DB::raw("concat(`patient`.`firstName`, ' ' ,`patient`.`lastName`) as fullname"),DB::raw("CASE WHEN gender = 1 THEN 'Male' WHEN gender = 2 THEN 'Female' END  AS gender"), 'patientId', 'age','address','phone','email')
+//        $a = getNextOrderNumber();
+        $patientInfo = Patient::select(DB::raw("concat(`patient`.`firstName`, ' ' ,`patient`.`lastName`) as fullname"),DB::raw("CASE WHEN gender = 1 THEN 'Male' WHEN gender = 2 THEN 'Female' END  AS gender"), 'patient_customId', 'age','address','phone','email')
             ->orderBy('patientId', 'ASC')
             ->get();
 
@@ -106,10 +142,14 @@ class PatientController extends Controller
 
     public function deletepatient(Request $request)
     {
-        $patient=Patient::findOrFail($request->id);
-
+        $patient=Patient::find($request->id);
 
          $patient->delete();
+
+         Session::flash('message', 'Patient Deleted!');
+
+         return back();
+
     }
 
 
