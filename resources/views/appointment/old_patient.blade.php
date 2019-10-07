@@ -112,31 +112,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Date</label>
-                            <div class="cal-icon">
-                                <input type="text" class="form-control datetimepicker">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Time</label>
-                            <div class="time-icon">
-                                <input type="text" class="form-control " id="datetimepicker3">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="row">
 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Day</label>
+                            <select class="select" name="day" id="day" class="form-control">
+                                <option value="">Select day</option>
+                                @foreach($days as $day)
+                                    <option value="{{$day->fkdoctorId}}">{{$day->day}}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+                        <span id="freetimetext"></span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea cols="30" rows="4" class="form-control"></textarea>
+            </form>
+        </div>
+
                 </div>
+
 
                 <div class="m-t-20 text-center">
                     <button class="btn btn-primary submit-btn">Create Appointment</button>

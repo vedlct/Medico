@@ -29,8 +29,9 @@ class AppointmentController extends Controller
     }
 
     public function oldPatient() {
-        $doctors = Doctor::get();
-        return view ('appointment.old_patient', compact('doctors'));
+        $days = WorkingHour::get();
+        $doctors = WorkingHour::select('fkdoctorId','doctorId','firstName','lastName')->leftjoin('doctor','fkdoctorId','doctorId')->get();
+        return view ('appointment.old_patient', compact('doctors','days'));
     }
 
     public function insert(Request $r)

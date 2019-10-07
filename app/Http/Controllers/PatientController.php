@@ -74,7 +74,7 @@ class PatientController extends Controller
     }
     public function deletepatient(Request $request)
     {
-        $patient=Patient::findOrFail($request->id);
+        $patient=Patient::find($request->id);
         $patient->delete();
     }
 }
