@@ -85,7 +85,6 @@
         function deletepatient(x)
         {
             var id = $(x).data('panel-id');
-
             $.confirm({
                 title: "Confirm",
                 content: "Are You Sure?",
@@ -106,11 +105,9 @@
                         });
                     },
                     cancel:function () {
-
                     }
                 }
             });
-
         }
     </script>
 @endsection

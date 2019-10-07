@@ -41,7 +41,7 @@ class AppointmentController extends Controller
         return redirect()->route('appointment');
     }
     public function showAppointment() {
-        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname , (`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname") , 'appointment','fkdoctorId','fkpatientId','age','email','phone','address','status')
+        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname") ,DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname") , 'fkdoctorId','fkpatientId','patient.age','patient.gender','patient.email','patient.phone','patient.address','doctor.status')
             ->leftjoin('doctor','fkdoctorId','doctorId')
             ->leftjoin('patient','fkpatientId','patientId')->get();
         $datatables = Datatables::of($appointmentInfo);

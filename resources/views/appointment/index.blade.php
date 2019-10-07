@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
-                <table id="showSchedule" class="table table-striped custom-table">
+                <table id="appointmentTable" class="table table-striped custom-table">
                     <thead>
                     <tr>
 
@@ -45,7 +45,7 @@
         $(document).ready(function() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-            table = $('#showSchedule').DataTable({
+            table = $('#appointmentTable').DataTable({
                 processing: true,
                 serverSide: true,
                 stateSave: true,
@@ -57,10 +57,10 @@
                     },
                 },
                 columns: [
-                    {data: 'patientname', name: 'appointment.patientname'},
+                    {data: 'patientname', name: 'patientname'},
                     {data: 'age', name: 'appointment.age'},
                     {data: 'gender', name: 'appointment.gender'},
-                    {data: 'doctorname', name: 'appointment.doctorname'},
+                    {data: 'doctorname', name: 'doctorname'},
                     {data: 'email', name: 'appointment.email'},
                     {data: 'phone', name: 'appointment.phone'},
                     {data: 'status', name: 'appointment.status'},
