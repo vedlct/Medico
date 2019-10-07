@@ -7,7 +7,7 @@ use App\WorkingHour;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
 
 class ScheduleController extends Controller
@@ -32,6 +32,7 @@ class ScheduleController extends Controller
             $schedule->day = $day;
             $schedule->start_time = date('H:i ', strtotime($r->start_time));
             $schedule->end_time = date('H:i ', strtotime($r->end_time));
+
             $schedule->save();
         }
 
@@ -40,9 +41,8 @@ class ScheduleController extends Controller
     }
 
     public function showSchedule() {
-        $scheduleInfo = WorkingHour::select(DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname , DATE_FORMAT(`start_time`,'%h:%i %p') as start_time, DATE_FORMAT(`end_time`,'%h:%i %p') as end_time "), 'working_hourId','fkdoctorId','day')
+        $scheduleInfo = WorkingHour::select(DB::raw("concat(doctor.firstName, ' ' , doctor.lastName) as doctorname , DATE_FORMAT(start_time,'%h:%i %p') as start_time, DATE_FORMAT(end_time,'%h:%i %p') as end_time "), 'working_hourId','fkdoctorId','day')
             ->leftjoin('doctor','fkdoctorId','doctorId')->get();
-
         $datatables = Datatables::of($scheduleInfo);
         return $datatables->make(true);
     }
@@ -80,6 +80,9 @@ class ScheduleController extends Controller
         $schedule->save();
 
         return view('schedule.index', compact('schedule','scheduleInfo'));
+
+        Session::flash('message', 'Doctor Shcedule Updated!');
+        Session::flash('alert-class', 'alert-success');
 //        return redirect('schedule', compact('schedule'));
 
     }

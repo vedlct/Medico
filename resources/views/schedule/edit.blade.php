@@ -13,11 +13,7 @@
                 {{ csrf_field() }}
                 <input type="hidden" value="{{$schedule->working_hourId}}" id="working_hourId" name="working_hourId">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>{{ $schedule->working_hourId }}</label>
-                        </div>
-                    </div>
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Start Time</label>
@@ -50,11 +46,13 @@
 
                         </div>
                     </div>
+                </div>
 
                 <div class="m-t-20 text-center">
                     <button type="submit" class="btn btn-primary submit-btn">Update Schedule</button>
                 </div>
             </form>
+
         </div>
     </div>
 

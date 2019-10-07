@@ -1,6 +1,5 @@
 @extends('main')
 @section('content')
-
     <div class="row">
         <div class="col-sm-4 col-3">
             <h4 class="page-title">Patients</h4>
@@ -15,9 +14,7 @@
                 <table id="patientstable" class="table table-border table-striped custom-table mb-0">
                     <thead>
                     <tr>
-                        <th>Patient ID</th>
-                        <th>Name</th>
-{{--                        <th>Lastname</th>--}}
+                        <th>Fullname</th>
                         <th>Age</th>
                         <th>Gender</th>
                         <th>Address</th>
@@ -31,7 +28,6 @@
         </div>
     </div>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-
 @endsection
 @section('js')
     <script>
@@ -40,10 +36,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
         $(document).ready(function() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
             table = $('#patientstable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -56,89 +50,67 @@
                     },
                 },
                 columns: [
-
-                    {data: 'patient_customId', name: 'patient_customId'},
                     {data: 'fullname', name: 'fullname'},
                     // {data: 'lastName', name: 'lastName'},
                     {data: 'age', name: 'age'},
                     {data: 'gender', name: 'gender'},
                     {data: 'address', name: 'address'},
                     {data: 'phone', name: 'phone'},
-                    {data: 'email', name: 'email'},
+                    {data: 'email', name:'email'},
                     {
                         "data": function(data) {
                             return '&nbsp;&nbsp;<a style="cursor: pointer; color: red" data-panel-id="'+data.patientId+'"onclick="deletepatient(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp; <a style="cursor: pointer; color: deepskyblue" data-panel-id2="'+data.patientId+'"onclick="editpatient(this)"><i class="fa fa-edit" aria-hidden="true"></i></a>';},
                         "orderable": false, "searchable":false, "name":"action" },
                 ],
-
             });
         });
-
         function editpatient(x)
         {
             // var id = $(x).data('panel-id2');
-
             var id = $(x).data('panel-id2');
             var url = '{{route("patient.edit", ":id") }}';
             // alert(id);
             var newUrl = url.replace(':id', id);
             window.location.href = newUrl;
-
-
             {{--$.ajax({--}}
             {{--    type: "post",--}}
             {{--    url: "{{route('patient.update')}}",--}}
             {{--    data: {id: id},--}}
             {{--    success: function (data) {--}}
-
             {{--        // alert(data);--}}
             {{--        table.ajax.reload();--}}
             {{--    }--}}
-
             {{--});--}}
-
         }
-
         function deletepatient(x)
         {
-
             var id = $(x).data('panel-id');
 
             $.confirm({
-                title: 'You Are Supposed to Delete',
-                content: 'Are You Sure?',
+                title: "Confirm",
+                content: "Are You Sure?",
                 buttons: {
                     confirm: function () {
                         $.ajax({
-                            type: 'POST',
+                            type: "post",
                             url: "{{route( 'patient.delete' )}}",
                             data: {id: id},
-                            success: function () {
-                                $.alert({
-                                    // animationBounce: 2,
-                                    title: 'Success!',
-                                    content: 'Patient Deleted.',
-                                });
+                            success: function (data) {
                                 // alert(data);
+                                $.alert({
+                                    title: "Success",
+                                    content: "Patient Deleted"
+                                });
                                 table.ajax.reload();
                             }
-
                         });
                     },
-
-                    cancel: function() {
+                    cancel:function () {
 
                     }
-
                 }
             });
 
-
         }
     </script>
-
-
-
-
 @endsection
-

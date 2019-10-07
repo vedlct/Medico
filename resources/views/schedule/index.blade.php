@@ -21,8 +21,10 @@
                             <th>Available Days</th>
                             <th>Start Time</th>
                             <th>End Time</th>
+
 {{--                            <th>Status</th>--}}
                             <th >Action</th>
+
                         </tr>
                         </thead>
                     </table>
