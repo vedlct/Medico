@@ -32,7 +32,6 @@ class ScheduleController extends Controller
             $schedule->day = $day;
             $schedule->start_time = date('H:i ', strtotime($r->start_time));
             $schedule->end_time = date('H:i ', strtotime($r->end_time));
-
             $schedule->save();
         }
 

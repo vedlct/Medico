@@ -44,6 +44,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -103,32 +105,6 @@
             });
         });
     </script>
-
-
-    <script type="text/javascript">
-
-        function compare(){
-
-            var str_time = document.getElementById("start_time").value;
-            var end_time  = document.getElementById("end_time").value;
-
-            if(str_time < end_time){
-                alert("Start time can not be less than End Time");
-            }
-
-            if(str_time  == end_time ){
-
-                alert("Start time can not be equal to end time ");
-            }
-
-
-        }
-
-
-
-    </script>
-
-
 
 
 

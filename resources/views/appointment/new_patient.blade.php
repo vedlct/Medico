@@ -20,7 +20,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Phone <span class="text-danger">*</span></label>
-                            <input class="form-control" required id="phone" name="phone" type="text" >
+                            <input class="form-control" required id="phone" name="phone" type="text">
 
                             {{--                            <button type="button" class="btn btn-success" onclick="checkoldpatient()">check</button>--}}
                         </div>
@@ -47,7 +47,8 @@
                             <select class="select" name="patientId" id="patientId" class="form-control" required>
                                 <option value="">Select</option>
                                 @foreach($patients as $patient)
-                                    <option value="{{$patient->patientId}}">{{$patient->firstName." ".$patient->lastName}}</option>
+                                    <option
+                                        value="{{$patient->patientId}}">{{$patient->firstName." ".$patient->lastName}}</option>
                                 @endforeach
                             </select>
                             {{--                            <input class="form-control" id="patientName" name="patientName" required type="text">--}}
@@ -111,7 +112,8 @@
                             <select class="select" name="doctorId" id="doctorId" class="form-control" required>
                                 <option value="">Select</option>
                                 @foreach($doctors as $doctor)
-                                    <option value="{{$doctor->fkdoctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>
+                                    <option
+                                        value="{{$doctor->fkdoctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>
                                 @endforeach
                             </select>
 
@@ -120,24 +122,21 @@
                     </div>
                 </div>
 
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group" style="margin-left: -16px">
+                                <label>Date</label>
+                                <div>
+                                    <input type="text" name="start_day" id="datepicker" required>
+                                </div>
 
-
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Day</label>
-                            <select class="select" name="day" id="day" class="form-control">
-                                <option value="">Select day</option>
-                                @foreach($days as $day)
-                                    <option value="{{$day->fkdoctorId}}">{{$day->day}}</option>
-                                @endforeach
-                            </select>
-
+                            </div>
                         </div>
-                        <span id="freetimetext"></span>
+
                     </div>
                 </div>
+
 
 
                 <div class="row">
