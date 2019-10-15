@@ -22,8 +22,10 @@
                         <th>Doctor Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>day</th>
                         <th>Status</th>
                         <th>Address</th>
+
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -59,10 +61,11 @@
                 columns: [
                     {data: 'patientname', name: 'patientname'},
                     {data: 'age', name: 'appointment.age'},
-                    {data: 'gender', name: 'appointment.gender'},
+                    {data: 'gender', name: 'gender'},
                     {data: 'doctorname', name: 'doctorname'},
                     {data: 'email', name: 'appointment.email'},
                     {data: 'phone', name: 'appointment.phone'},
+                    {data: 'day', name: 'appointment.day'},
                     {data: 'status', name: 'appointment.status'},
                     // {data: 'patientName', name: 'appointment.patientName'},
                     {data: 'address', name: 'appointment.address'},

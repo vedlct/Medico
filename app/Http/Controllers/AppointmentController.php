@@ -15,8 +15,8 @@ class AppointmentController extends Controller
 //        $doctors = Doctor::select('doctorId', 'firstName', 'lastName')->get();
         $doctors = WorkingHour::select('fkdoctorId','doctorId','firstName','lastName')->leftjoin('doctor','fkdoctorId','doctorId')->get();
         $patients =  Patient::get();
-        $days = WorkingHour::get();
-        return view ('appointment.new_patient', compact('doctors','patients','days'));
+
+        return view ('appointment.new_patient', compact('doctors','patients'));
     }
     public function oldPatient() {
         $days = WorkingHour::get();
@@ -25,6 +25,9 @@ class AppointmentController extends Controller
     }
     public function insert(Request $r)
     {
+
+
+
         $appointment = new Appointment();
         $appointment->phone = $r->phone;
         $appointment->age = $r->age;
@@ -33,7 +36,9 @@ class AppointmentController extends Controller
         $appointment->fkpatientId = $r->patientId;
         $appointment->fkdoctorId = $r->doctorId;
         $appointment->address = $r->address;
+        $appointment->day = date('l',strtotime($r->day));
         $appointment->status = $r->status;
+
 //        $appointment->phone = $r->phone;
         $appointment->save();
         Session::flash('message', 'Appointment Created!');
@@ -41,7 +46,7 @@ class AppointmentController extends Controller
         return redirect()->route('appointment');
     }
     public function showAppointment() {
-        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname") ,DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname") , 'fkdoctorId','fkpatientId','patient.age','patient.gender','patient.email','patient.phone','patient.address','doctor.status')
+        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname") ,DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname") , DB::raw("CASE WHEN patient.gender = 1 THEN 'Male' WHEN patient.gender = 2 THEN 'Female' END  AS gender"), 'fkdoctorId','fkpatientId','patient.age','patient.email','patient.phone','patient.address','appointment.day','doctor.status')
             ->leftjoin('doctor','fkdoctorId','doctorId')
             ->leftjoin('patient','fkpatientId','patientId')->get();
         $datatables = Datatables::of($appointmentInfo);

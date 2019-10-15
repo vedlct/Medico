@@ -128,7 +128,7 @@
                             <div class="form-group" style="margin-left: -16px">
                                 <label>Date</label>
                                 <div>
-                                    <input type="text" name="start_day" id="datepicker" required>
+                                    <input type="text" name="day" id="datepicker" required>
                                 </div>
 
                             </div>
@@ -179,11 +179,15 @@
     </script>
 
 
-    <script type="text/javascript">
-        $(function () {
-            $('#format').datetimepicker({
-                format: 'Y-M-d'
-            });
+    <script>
+
+        var today = new Date();
+
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            minDate: today // set the minDate to the today's date
+            // you can add other options here
         });
     </script>
 

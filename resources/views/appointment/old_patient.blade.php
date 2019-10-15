@@ -174,6 +174,21 @@
                 data: {phone: phone},
                 success: function (data) {
 
+                    if(data.phone != phone) {
+                        $.alert({
+                            title:"Sorry",
+                            content: "Not Matched"
+                        });
+
+                        document.getElementById('firstName').value = "";
+                        document.getElementById('lastName').value = "";
+                        document.getElementById('age').value = "";
+                        document.getElementById('address').value = "";
+                        document.getElementById('email').value = "";
+                        document.getElementById('genderMale').checked = false;
+                        document.getElementById('genderFeMale').checked = false;
+                    }else {
+
                     document.getElementById('firstName').value = data.firstName;
                     document.getElementById('lastName').value = data.lastName;
                     document.getElementById('age').value = data.age;
@@ -189,7 +204,7 @@
 
                     }
 
-
+                    }
                 }
 
             });
