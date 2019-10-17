@@ -35,7 +35,9 @@ class AppointmentController extends Controller
     {
 
         $checkday = WorkingHour::where('fkdoctorId', $r->doctorId)
-            ->where('day', date('l', strtotime($r->day)))->get();
+            ->where('day', date('l', strtotime($r->day))
+            ->where('start_time',date('H:i', strtotime($r->start_time))
+            ->where('end_time',date('H:i',strtotime($r->end_time)))))->get();
 
 
         if (count($checkday) < 1) {
