@@ -35,13 +35,13 @@ class AppointmentController extends Controller
     {
 
         $checkday = WorkingHour::where('fkdoctorId', $r->doctorId)
-            ->where('day', date('l', strtotime($r->day))
-            ->where('start_time',date('H:i', strtotime($r->start_time))
-            ->where('end_time',date('H:i',strtotime($r->end_time)))))->get();
+            ->where('day', date('l', strtotime($r->day)))->get();
+//            ->where('start_time',date('H:i', strtotime($r->start_time))
+//            ->where('end_time',date('H:i',strtotime($r->end_time)))))->get();
 
 
         if (count($checkday) < 1) {
-            Session::flash('message', 'Doctor not available this day!');
+            Session::flash('message', 'Doctor not available this day! ');
             Session::flash('alert-class', 'alert-danger');
 
             return back();
