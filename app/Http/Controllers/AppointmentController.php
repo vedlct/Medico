@@ -33,18 +33,17 @@ class AppointmentController extends Controller
 
     public function insert(Request $r)
     {
-
+//   return date('H:i',strtotime($r->appointment_time));
         $checkday = WorkingHour::where('fkdoctorId', $r->doctorId)
-            ->where('day', date('l', strtotime($r->day))
-            ->where('start_time',date('H:i', strtotime($r->start_time))
-            ->where('end_time',date('H:i',strtotime($r->end_time)))))->get();
+            ->where('day',date('l',strtotime($r->day)));
 
 
         if (count($checkday) < 1) {
+
             Session::flash('message', 'Doctor not available this day!');
             Session::flash('alert-class', 'alert-danger');
-
             return back();
+
 
         } else {
 
@@ -57,6 +56,7 @@ class AppointmentController extends Controller
             $appointment->fkdoctorId = $r->doctorId;
             $appointment->address = $r->address;
             $appointment->day = date('l', strtotime($r->day));
+            $appointment->appointment_time = date('H:i', strtotime($r->appointment_time));
             $appointment->status = $r->status;
 
 //        $appointment->phone = $r->phone;
@@ -73,7 +73,7 @@ class AppointmentController extends Controller
 
     public function showAppointment()
     {
-        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname"), DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname"), DB::raw("CASE WHEN patient.gender = 1 THEN 'Male' WHEN patient.gender = 2 THEN 'Female' END  AS gender"), 'fkdoctorId', 'fkpatientId', 'patient.age', 'appointment.email', 'patient.phone', 'patient.address', 'appointment.day', 'doctor.status')
+        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname"), DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname"), DB::raw("CASE WHEN patient.gender = 1 THEN 'Male' WHEN patient.gender = 2 THEN 'Female' END  AS gender"), DB::raw( "DATE_FORMAT(`appointment_time`,'%h:%i') as appointment_time"), 'fkdoctorId', 'fkpatientId', 'patient.age', 'appointment.email', 'patient.phone', 'patient.address', 'appointment.day', 'doctor.status')
             ->leftjoin('doctor', 'fkdoctorId', 'doctorId')
             ->leftjoin('patient', 'fkpatientId', 'patientId')->get();
         $datatables = Datatables::of($appointmentInfo);

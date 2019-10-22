@@ -24,7 +24,9 @@
                         <th>Phone</th>
                         <th>day</th>
                         <th>Status</th>
+                        <th>Appointment Time</th>
                         <th>Address</th>
+
 
                         <th>Action</th>
                     </tr>
@@ -67,6 +69,7 @@
                     {data: 'phone', name: 'appointment.phone'},
                     {data: 'day', name: 'appointment.day'},
                     {data: 'status', name: 'appointment.status'},
+                    {data: 'appointment_time', name: 'appointment.appointment_time'},
                     // {data: 'patientName', name: 'appointment.patientName'},
                     {data: 'address', name: 'appointment.address'},
                     { "data": function(data){
