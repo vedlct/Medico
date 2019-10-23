@@ -7,6 +7,7 @@ use App\Doctor;
 use App\Patient;
 use App\WorkingHour;
 use Carbon\Carbon;
+use http\Env\Response;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -33,14 +34,17 @@ class AppointmentController extends Controller
 
     public function insert(Request $r)
     {
-//   return date('H:i',strtotime($r->appointment_time));
-        $checkday = WorkingHour::where('fkdoctorId', $r->doctorId)
-            ->where('day',date('l',strtotime($r->day)));
 
+        $checkday = WorkingHour::where('fkdoctorId', $r->doctorId)
+            ->where('day',date('l',strtotime($r->day)))
+            ->where('start_time' ,'<=', date('H:i:p', strtotime($r->appointment_time)))
+            ->where('end_time' ,'>=', date('H:i:p', strtotime($r->appointment_time)))->get();
+
+       // return Response()->json($start[4]);
 
         if (count($checkday) < 1) {
 
-            Session::flash('message', 'Doctor not available this day!');
+            Session::flash('message', 'Doctor not available this day ot this time!');
             Session::flash('alert-class', 'alert-danger');
             return back();
 

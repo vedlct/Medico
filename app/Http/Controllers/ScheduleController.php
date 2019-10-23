@@ -20,6 +20,7 @@ class ScheduleController extends Controller
     public function add() {
         $doctors = Doctor::select('doctorId', 'firstName', 'lastName')->get();
         return view('schedule.add', compact('doctors'));
+
     }
     public function insertdata(Request $r ){
 
