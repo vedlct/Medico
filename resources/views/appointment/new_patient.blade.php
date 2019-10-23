@@ -124,16 +124,29 @@
 
                 <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-3">
                             <div class="form-group" style="margin-left: -16px">
                                 <label>Date</label>
                                 <div>
-                                    <input type="text" name="day" id="datepicker" required>
+                                    <input class="form-control" type="text" name="day" id="datepicker" required>
                                 </div>
 
                             </div>
                         </div>
 
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="row">
+                    <div class="col-sm-3">
+                    <div class="form-group" style="margin-left: -16px">
+                        <label>Appointment Time</label>
+                        <div class="time-icon">
+                            <input name="appointment_time" type="text" class="form-control" id="datetimepicker1">
+                        </div>
+                    </div>
+                    </div>
                     </div>
                 </div>
 
@@ -188,6 +201,15 @@
             changeYear: true,
             minDate: today // set the minDate to the today's date
             // you can add other options here
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'LT'
+            });
+
         });
     </script>
 

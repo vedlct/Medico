@@ -20,7 +20,6 @@ class AppointmentController extends Controller
 //        $doctors = Doctor::select('doctorId', 'firstName', 'lastName')->get();
         $doctors = WorkingHour::select('fkdoctorId', 'doctorId', 'firstName', 'lastName')->leftjoin('doctor', 'fkdoctorId', 'doctorId')->get();
         $patients = Patient::get();
-
         return view('appointment.new_patient', compact('doctors', 'patients'));
     }
 
@@ -33,21 +32,18 @@ class AppointmentController extends Controller
 
     public function insert(Request $r)
     {
-
         $checkday = WorkingHour::where('fkdoctorId', $r->doctorId)
             ->where('day', date('l', strtotime($r->day)))->get();
-//            ->where('start_time',date('H:i', strtotime($r->start_time))
-//            ->where('end_time',date('H:i',strtotime($r->end_time)))))->get();
+
+
+//        $start = DB::table('working_hour')->distinct()->get(['start_time']);
 
 
         if (count($checkday) < 1) {
-            Session::flash('message', 'Doctor not available this day! ');
+            Session::flash('message', 'Doctor not available this day!');
             Session::flash('alert-class', 'alert-danger');
-
             return back();
-
         } else {
-
             $appointment = new Appointment();
             $appointment->phone = $r->phone;
             $appointment->age = $r->age;
@@ -57,23 +53,19 @@ class AppointmentController extends Controller
             $appointment->fkdoctorId = $r->doctorId;
             $appointment->address = $r->address;
             $appointment->day = date('l', strtotime($r->day));
+            $appointment->appointment_time = date('H:i', strtotime($r->appointment_time));
             $appointment->status = $r->status;
-
 //        $appointment->phone = $r->phone;
             $appointment->save();
             Session::flash('message', 'Appointment Created!');
             Session::flash('alert-class', 'alert-success');
             return redirect()->route('appointment');
-
-
         }
-
-
     }
 
     public function showAppointment()
     {
-        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname"), DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname"), DB::raw("CASE WHEN patient.gender = 1 THEN 'Male' WHEN patient.gender = 2 THEN 'Female' END  AS gender"), 'fkdoctorId', 'fkpatientId', 'patient.age', 'appointment.email', 'patient.phone', 'patient.address', 'appointment.day', 'doctor.status')
+        $appointmentInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`, ' ' , `patient`.`lastName`) as patientname"), DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname"), DB::raw("CASE WHEN patient.gender = 1 THEN 'Male' WHEN patient.gender = 2 THEN 'Female' END  AS gender"), DB::raw("DATE_FORMAT(`appointment_time`,'%h:%i') as appointment_time"), 'fkdoctorId', 'fkpatientId', 'patient.age', 'appointment.email', 'patient.phone', 'patient.address', 'appointment.day', 'doctor.status')
             ->leftjoin('doctor', 'fkdoctorId', 'doctorId')
             ->leftjoin('patient', 'fkpatientId', 'patientId')->get();
         $datatables = Datatables::of($appointmentInfo);

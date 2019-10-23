@@ -86,7 +86,7 @@ class DoctorController extends Controller
         Session::flash('message', 'Doctor Created!');
         Session::flash('alert-class', 'alert-success');
 
-        return back();
+        return redirect('doctors');
 
     }
 
