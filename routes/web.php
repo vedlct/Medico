@@ -46,25 +46,25 @@ Route::group(['middleware'=>['auth']],function (){
 
 
 
-
 //    Route::get('appointment','AppointmentController@index')->name('appointments');
 
 
     Route::get('/appointment','AppointmentController@index')->name('appointment');
+    Route::post('/appointment','AppointmentController@insert')->name('appointment.insert');
     Route::get('appointment/add','AppointmentController@add')->name('appointment.add');
     Route::get('appointment/new','AppointmentController@newPatient')->name('appointment.new');
     Route::post('appointment/show','AppointmentController@showAppointment')->name('appointment.show');
     Route::post('appointment/insert','AppointmentController@insert')->name('appointment.insert');
-    Route::post('appointment/delete', 'Appointment@deleteAppointment')->name('appointment.delete');
+    Route::post('appointment/delete', 'AppointmentController@deleteAppointment')->name('appointment.delete');
 
     Route::get('appointment/old','AppointmentController@oldPatient')->name('appointment.old');
 
-    Route::post('/appointment','AppointmentController@insert')->name('appointment');
-     // Route::view('/appointments','appointments')->name('appointments');
+    // Route::view('/appointments','appointments')->name('appointments');
     Route::get('/appointment/add','AppointmentController@add')->name('appointment.add');
     Route::get('/appointment/add','AppointmentController@add')->name('appointment.add');
     Route::post('/appointment/new/checkpatient','AppointmentController@checkpatient')->name('checkpatient');
     Route::post('/appointment/checkappointmenttime','AppointmentController@checkappointmenttime')->name('checkappointmenttime');
+    Route::post('/checkpatient', 'AppointmentController@checkoldpatient')->name('checkoldpatient');
 
 
 
@@ -95,7 +95,6 @@ Route::group(['middleware'=>['auth']],function (){
 
     //----------- appointment ------------------//
 
-    Route::post('/checkpatient', 'AppointmentController@checkoldpatient')->name('checkoldpatient');
 
 
 });

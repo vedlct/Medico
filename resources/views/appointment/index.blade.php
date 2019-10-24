@@ -18,12 +18,12 @@
 
                         <th>Patient Name</th>
                         <th>Age</th>
-                        <th>Gender</th>
-                        <th>Doctor Name</th>
-                        <th>Email</th>
                         <th>Phone</th>
-                        <th>Status</th>
+                        <th>Email</th>
+                        <th>Gender</th>
                         <th>Address</th>
+                        <th>Doctor Name</th>
+                        <th>Doctor Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -32,6 +32,11 @@
             </div>
         </div>
     </div>
+
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+
 @endsection
 
 @section('js')
@@ -53,20 +58,20 @@
                     "url": "{!! route('appointment.show') !!}",
                     "type": "POST",
                     data: function (d) {
-                        d._token = "{{csrf_token()}}";
+                        d._token = "{{ csrf_token() }}";
                     },
                 },
                 columns: [
                     {data: 'patientname', name: 'patientname'},
                     {data: 'age', name: 'appointment.age'},
-                    {data: 'gender', name: 'appointment.gender'},
-                    {data: 'doctorname', name: 'doctorname'},
-                    {data: 'email', name: 'appointment.email'},
                     {data: 'phone', name: 'appointment.phone'},
+                    {data: 'email', name: 'appointment.email'},
+                    {data: 'gender', name: 'appointment.gender'},
+                    {data: 'address', name: 'appointment.address'},
+                    {data: 'doctorname', name: 'doctorname'},
                     {data: 'status', name: 'appointment.status'},
                     // {data: 'patientName', name: 'appointment.patientName'},
-                    {data: 'address', name: 'appointment.address'},
-                    { "data": function(data){
+                    {"data": function(data){
                             return '&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id="'+data.appointmentId+'"onclick="deleteAppointment(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>';},
                         "orderable": false, "searchable":false, "name":"action" },
                 ],
@@ -77,22 +82,38 @@
 
         function deleteAppointment(x)
         {
-
-
             var id = $(x).data('panel-id');
 
+            // alert(id);
+            $.confirm({
+                title: "CONFIRM",
+                content: "Are you sure?",
+                buttons: {
+                    confirm: function() {
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ route('appointment.delete') }}",
+                            data: {id: id},
+                            success: function(data) {
 
-            $.ajax({
-                type: "post",
-                url: "{{route('appointment.delete')}}",
-                data: {id: id},
-                success: function (data) {
+                                // alert(data);
 
-                    // alert(data);
-                    table.ajax.reload();
+                                $.alert({
+                                    title: "Successful!",
+                                    content: "Appointment Deleted."
+                                });
+                                table.ajax.reload();
+                            }
+
+                        });
+                    },
+                    cancel: function() {
+
+                    }
                 }
-
             });
+
+
 
         }
     </script>

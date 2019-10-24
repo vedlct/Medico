@@ -56,6 +56,7 @@
 
                     </div>
 
+
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Age<span class="text-danger">*</span></label>
@@ -147,7 +148,6 @@
 
                 <div class="m-t-20 text-center">
                     <button type="submit" class="btn btn-primary submit-btn">Create Appointment</button>
-
                 </div>
 
             </form>

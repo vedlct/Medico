@@ -1,25 +1,25 @@
 <div class="sidebar" id="sidebar">
     <div class="sidebar-inner slimscroll">
-        <div id="sidebar-menu" class="sidebar-menu">
+        <div id="sidebar-menu" class="sidebar-menu" >
             <ul>
                 <li class="menu-title">Main</li>
-                <li class="active">
-                    <a href="{{route('welcome')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                <li class="{{ Route::is('welcome') ? 'active' : '' }}">
+                    <a href="{{ route('welcome') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                 </li>
-                <li>
-                    <a href="{{route('doctors')}}"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
+                <li class="{{ Route::is('doctors') ? 'active' : '' }}">
+                    <a href="{{ route('doctors') }}"><i class="fa fa-user-md"></i> <span>Doctors </span></a>
                 </li>
-                <li>
-                    <a href="{{route('patients')}}"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
+                <li class="{{ Route::is(('patients')) ? 'active' : '' }}">
+                    <a href="{{ route('patients') }}"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
                 </li>
-                <li>
-                    <a href="{{route('appointment')}}"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
+                <li class="{{ Route::is(('appointment')) ? 'active' : '' }}">
+                    <a href="{{ route('appointment') }}"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
                 </li>
-                <li>
+                <li class="{{ Route::is(('schedule')) ? 'active' : '' }}">
                     <a href="{{ route('schedule') }}"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
                 </li>
-                <li>
-                    <a href="{{route('services')}}"><i class="fa fa-server"></i> <span>Services</span></a>
+                <li class="{{ Request::is(('services')) ? 'active' : '' }}">
+                    <a href="{{ route('services') }}"><i class="fa fa-server"></i> <span>Services</span></a>
                 </li>
 {{--                <li>--}}
 {{--                    <a href="departments.html"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>--}}
@@ -62,8 +62,8 @@
                         <li><a href="invoice-reports.html"> Invoice Report </a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="{{route('settings')}}"><i class="fa fa-cog"></i> <span>Settings</span></a>
+                <li class="{{ Route::is('settings') ? 'active' : '' }}">
+                    <a href="{{route('settings')}}"><i class="fa fa-cog"></i><span>Settings</span></a>
                 </li>
 
 
@@ -72,3 +72,10 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+    $(document).on('click', 'ul li', function() {
+        $(this).addClass('active').siblings().removeClass('active')
+    })
+</script>
