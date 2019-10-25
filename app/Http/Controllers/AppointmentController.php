@@ -19,7 +19,7 @@ class AppointmentController extends Controller
     public function newPatient()
     {
 //        $doctors = Doctor::select('doctorId', 'firstName', 'lastName')->get();
-        $doctors = WorkingHour::select('fkdoctorId', 'doctorId', 'firstName', 'lastName')->leftjoin('doctor', 'fkdoctorId', 'doctorId')->get();
+        $doctors = Doctor::select( 'doctorId', 'firstName', 'lastName')->get();
         $patients = Patient::get();
 
         return view('appointment.new_patient', compact('doctors', 'patients'));
@@ -44,7 +44,7 @@ class AppointmentController extends Controller
 
         if (count($checkday) < 1) {
 
-            Session::flash('message', 'Doctor not available this day ot this time!');
+            Session::flash('message', 'Doctor not available this day ot this time!!');
             Session::flash('alert-class', 'alert-danger');
             return back();
 
