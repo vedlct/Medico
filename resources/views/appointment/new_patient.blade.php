@@ -114,7 +114,7 @@
                                 <option value="">Select</option>
                                 @foreach($doctors as $doctor)
                                     <option
-                                        value="{{$doctor->fkdoctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>
+                                        value="{{$doctor->doctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>
                                 @endforeach
                             </select>
                         </div>
