@@ -20,6 +20,7 @@ class ScheduleController extends Controller
     public function add() {
         $doctors = Doctor::select('doctorId', 'firstName', 'lastName')->get();
         return view('schedule.add', compact('doctors'));
+
     }
     public function insertdata(Request $r ){
 
@@ -32,7 +33,6 @@ class ScheduleController extends Controller
             $schedule->day = $day;
             $schedule->start_time = date('H:i ', strtotime($r->start_time));
             $schedule->end_time = date('H:i ', strtotime($r->end_time));
-
             $schedule->save();
         }
 

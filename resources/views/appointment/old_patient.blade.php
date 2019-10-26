@@ -11,17 +11,17 @@
             <form action="{{ route('appointment.insert') }}" method="post">
                 {{ csrf_field() }}
 
-                <div class="form-group">
-                    <label>Patient Name<span class="text-danger">*</span></label>
-                    <select class="select" name="patientId" id="patientId" class="form-control" required>
-                        <option value="">Select</option>
-                        @foreach($patients as $patient)
-                            <option value="{{$patient->patientId}}">{{$patient->firstName." ".$patient->lastName}}</option>
-                        @endforeach
-                    </select>
-                    {{--                            <input class="form-control" id="patientName" name="patientName" required type="text">--}}
+{{--                <div class="form-group">--}}
+{{--                    <label>Patient Name<span class="text-danger">*</span></label>--}}
+{{--                    <select class="select" name="patientId" id="patientId" class="form-control" required>--}}
+{{--                        <option value="">Select</option>--}}
+{{--                        @foreach($patients as $patient)--}}
+{{--                            <option value="{{$patient->patientId}}"></option>--}}
+{{--                        @endforeach--}}
+{{--                    </select>--}}
+{{--                                                <input class="form-control" id="patientName" name="patientName" required type="text">--}}
 
-                </div>
+{{--                </div>--}}
 
 
 {{--                <div class="form-group">--}}
@@ -80,6 +80,10 @@
                             <label>Last Name</label>
                             <input class="form-control" id="lastName" name="lastName" required type="text" readonly>
                         </div>
+                    </div>
+                    <div>
+                        <input class="form-control" required id="patientId" name="patientId" type="hidden">
+
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -150,7 +154,7 @@
                         <div class="form-group">
                             <label>Date</label>
 
-                            <input type="text" class="form-control" id="mydate">
+                            <input type="text" class="form-control" name="day" id="mydate">
 
 {{--                            <select class="select" name="day" id="day" class="form-control">--}}
 {{--                                <option value="">Select day</option>--}}
@@ -165,7 +169,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Time</label>
-                            <input type="text" class="form-control" id="time">
+                            <input type="text" class="form-control" name="appointment_time" id="appointment_time">
                         </div>
                     </div>
                 </div>
@@ -205,13 +209,13 @@
                 changeYear:true,
                 minDate: 0,
                 maxDate: '+3M',
-                beforeShowDay: DisableMonday
+                // beforeShowDay: DisableMonday
             });
             // $('#datetimepicker2').datetimepicker({
             //     // format: 'LT'
             //     // dateFormat: 'yy-mm-dd'
             // });
-            $('#time').datetimepicker({
+            $('#appointment_time').datetimepicker({
                 format: 'LT'
             });
         });
@@ -236,13 +240,16 @@
 
                     if(data.phone != phone) {
                         $.alert({
+
                             title: "Sorry!!",
                             content: "Phone Number Not Matched.."
                         });
 
                         document.getElementById('phone').value = "";
+
                         document.getElementById('firstName').value = "";
                         document.getElementById('lastName').value = "";
+                        document.getElementById('patientId').value = "";
                         document.getElementById('age').value = "";
                         document.getElementById('address').value = "";
                         document.getElementById('email').value = "";
@@ -253,21 +260,20 @@
                     else {
                         document.getElementById('firstName').value = data.firstName;
                         document.getElementById('lastName').value = data.lastName;
+                        document.getElementById('patientId').value = data.patientId;
                         document.getElementById('age').value = data.age;
                         document.getElementById('address').value = data.address;
                         document.getElementById('email').value = data.email;
 
                         if (data.gender == 1) {
-                            document.getElementById('genderMale').checked = true;
-                            // document.getElementById('genderMale').value = 1;
-                            // $("#genderMale").prop("checked", true);
+                            document.getElementById('genderMale').value = 1;
+                            $("#genderMale").prop("checked", true);
                         } else {
-                            document.getElementById('genderFeMale').checked = true;
-                            // document.getElementById('genderFeMale').value = 2;
-                            // $("#genderFeMale").prop("checked", true);
+                            document.getElementById('genderFeMale').value = 2;
+                            $("#genderFeMale").prop("checked", true);
                         }
-
                     }
+
 
                 }
 

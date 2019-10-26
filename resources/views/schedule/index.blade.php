@@ -65,7 +65,7 @@
                 columns: [
 
                     {data: 'doctorname', name: 'doctorname'},
-                    {data: 'day', name: 'day'},
+                    {data: 'day', name: 'day' },
                     {data: 'start_time', name: 'start_time' },
                     {data: 'end_time', name: 'end_time'},
 

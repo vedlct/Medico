@@ -18,12 +18,16 @@
 
                         <th>Patient Name</th>
                         <th>Age</th>
-                        <th>Phone</th>
-                        <th>Email</th>
                         <th>Gender</th>
-                        <th>Address</th>
                         <th>Doctor Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Day</th>
                         <th>Doctor Status</th>
+                        <th>Appointment Time</th>
+                        <th>Address</th>
+
+
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -32,11 +36,6 @@
             </div>
         </div>
     </div>
-
-
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-
-
 @endsection
 
 @section('js')
@@ -46,10 +45,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
         $(document).ready(function() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
             table = $('#appointmentTable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -58,63 +55,39 @@
                     "url": "{!! route('appointment.show') !!}",
                     "type": "POST",
                     data: function (d) {
-                        d._token = "{{ csrf_token() }}";
+                        d._token = "{{csrf_token()}}";
                     },
                 },
                 columns: [
                     {data: 'patientname', name: 'patientname'},
                     {data: 'age', name: 'appointment.age'},
-                    {data: 'phone', name: 'appointment.phone'},
-                    {data: 'email', name: 'appointment.email'},
-                    {data: 'gender', name: 'appointment.gender'},
-                    {data: 'address', name: 'appointment.address'},
+                    {data: 'gender', name: 'gender'},
                     {data: 'doctorname', name: 'doctorname'},
-                    {data: 'status', name: 'appointment.status'},
+                    {data: 'email', name: 'appointment.email'},
+                    {data: 'phone', name: 'appointment.phone'},
+                    {data: 'day', name: 'appointment.day'},
+                    {data: 'status', name: 'status'},
+                    {data: 'appointment_time', name: 'appointment.appointment_time'},
                     // {data: 'patientName', name: 'appointment.patientName'},
-                    {"data": function(data){
+                    {data: 'address', name: 'appointment.address'},
+                    { "data": function(data){
                             return '&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id="'+data.appointmentId+'"onclick="deleteAppointment(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>';},
                         "orderable": false, "searchable":false, "name":"action" },
                 ],
-
             });
         });
-
-
         function deleteAppointment(x)
         {
             var id = $(x).data('panel-id');
-
-            // alert(id);
-            $.confirm({
-                title: "CONFIRM",
-                content: "Are you sure?",
-                buttons: {
-                    confirm: function() {
-                        $.ajax({
-                            type: "POST",
-                            url: "{{ route('appointment.delete') }}",
-                            data: {id: id},
-                            success: function(data) {
-
-                                // alert(data);
-
-                                $.alert({
-                                    title: "Successful!",
-                                    content: "Appointment Deleted."
-                                });
-                                table.ajax.reload();
-                            }
-
-                        });
-                    },
-                    cancel: function() {
-
-                    }
+            $.ajax({
+                type: "post",
+                url: "{{route('appointment.delete')}}",
+                data: {id: id},
+                success: function (data) {
+                    // alert(data);
+                    table.ajax.reload();
                 }
             });
-
-
-
         }
     </script>
 
@@ -122,4 +95,3 @@
 
 
 @endsection
-
