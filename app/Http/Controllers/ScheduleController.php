@@ -31,7 +31,7 @@ class ScheduleController extends Controller
 
         $begin_hour = Carbon::parse($r['start_time']);
         $end_hour = Carbon::parse($r['end_time']);
-        if ($begin_hour >= $end_hour) {
+        if ($begin_hour->addMinutes(30) >= $end_hour) {
             Session::flash('message', 'Start time can not be equal or greater than End time !!');
             Session::flash('alert-class', 'alert-danger');
 
