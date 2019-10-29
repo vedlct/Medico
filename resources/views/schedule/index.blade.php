@@ -116,7 +116,7 @@
                             type: "post",
                             url: "{{route('schedule.delete')}}",
                             data: {id: id},
-                            success: function () {
+                            success: function() {
 
                                 $.alert({
                                     title: 'Success!',

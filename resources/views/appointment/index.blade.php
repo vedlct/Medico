@@ -22,8 +22,8 @@
                         <th>Doctor Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>day</th>
-                        <th>Status</th>
+                        <th>Day</th>
+                        <th>Doctor Status</th>
                         <th>Appointment Time</th>
                         <th>Address</th>
 
@@ -45,10 +45,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
         $(document).ready(function() {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
             table = $('#appointmentTable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -68,7 +66,7 @@
                     {data: 'email', name: 'appointment.email'},
                     {data: 'phone', name: 'appointment.phone'},
                     {data: 'day', name: 'appointment.day'},
-                    {data: 'status', name: 'appointment.status'},
+                    {data: 'status', name: 'status'},
                     {data: 'appointment_time', name: 'appointment.appointment_time'},
                     // {data: 'patientName', name: 'appointment.patientName'},
                     {data: 'address', name: 'appointment.address'},
@@ -76,30 +74,20 @@
                             return '&nbsp;&nbsp;<a style="cursor: pointer; color: #4881ecfa" data-panel-id="'+data.appointmentId+'"onclick="deleteAppointment(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>';},
                         "orderable": false, "searchable":false, "name":"action" },
                 ],
-
             });
         });
-
-
         function deleteAppointment(x)
         {
-
-
             var id = $(x).data('panel-id');
-
-
             $.ajax({
                 type: "post",
                 url: "{{route('appointment.delete')}}",
                 data: {id: id},
                 success: function (data) {
-
                     // alert(data);
                     table.ajax.reload();
                 }
-
             });
-
         }
     </script>
 
@@ -107,4 +95,3 @@
 
 
 @endsection
-
