@@ -35,12 +35,10 @@ class AppointmentController extends Controller
             ->where('end_time' ,'>=', date('H:i:p', strtotime($r->appointment_time)))->get();
         // return Response()->json($start[4]);
         if (count($checkday) < 1) {
-<<<<<<< HEAD
-            Session::flash('message', 'Doctor not available this day ot this time!');
-=======
+            Session::flash('message', 'Doctor is not available this day ot this time!');
 
-            Session::flash('message', 'Doctor not available this day ot this time!!');
->>>>>>> 3e4cb5840e75729bdbf37f2298d76f9cf10b4865
+            Session::flash('message', 'Doctor is not available this day ot this time!!');
+
             Session::flash('alert-class', 'alert-danger');
             return back();
         } else {
