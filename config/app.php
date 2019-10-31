@@ -164,6 +164,8 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
 
+        MailboxValidatorLaravel\Validation\ValidationServiceProvider::class,
+
 
         /*
          * Package Service Providers...

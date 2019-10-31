@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7cf48aabff6e8da977cd7423590473f4",
+    "content-hash": "0224dac04794210b2a7ad3b99a86d433",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1231,6 +1231,52 @@
                 "storage"
             ],
             "time": "2019-08-24T11:17:19+00:00"
+        },
+        {
+            "name": "mailboxvalidator-laravel/validation",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MailboxValidator/MailboxValidatorLaravel.git",
+                "reference": "388c0e5fb48e2abd79c94cbf5e9a9dc4d93c9291"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MailboxValidator/MailboxValidatorLaravel/zipball/388c0e5fb48e2abd79c94cbf5e9a9dc4d93c9291",
+                "reference": "388c0e5fb48e2abd79c94cbf5e9a9dc4d93c9291",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MailboxValidatorLaravel\\Validation\\ValidationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MailboxValidatorLaravel\\Validation\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "MailboxValidator",
+                    "email": "support@mailboxvalidator.com"
+                }
+            ],
+            "description": "Laravel package to validate an email by using MailboxValidator API.",
+            "keywords": [
+                "disposable",
+                "email validation",
+                "laravel",
+                "mailboxvalidator"
+            ],
+            "time": "2019-01-16T07:37:41+00:00"
         },
         {
             "name": "monolog/monolog",
