@@ -27,7 +27,7 @@
                     <a class="dropdown-item" href="settings.html">Settings</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                               document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
 
@@ -59,6 +59,7 @@
                 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
             @endif
             @yield('content')
+
 
         </div>
 

@@ -19,7 +19,7 @@
 
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Phone <span class="text-danger">*</span></label>
+                            <label><b>Phone</b> <span class="text-danger">*</span></label>
                             <input class="form-control" required id="phone" name="phone" type="text">
 
                             {{--                            <button type="button" class="btn btn-success" onclick="checkoldpatient()">check</button>--}}
@@ -43,7 +43,7 @@
                     <div class="col-md-6">
 
                         <div class="form-group">
-                            <label>Patient Name<span class="text-danger">*</span></label>
+                            <label><b>Patient Name</b><span class="text-danger">*</span></label>
                             <select class="select" name="patientId" id="patientId" class="form-control" required>
                                 <option value="">Select</option>
                                 @foreach($patients as $patient)
@@ -57,9 +57,10 @@
 
                     </div>
 
+
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Age<span class="text-danger">*</span></label>
+                            <label><b>Age</b><span class="text-danger">*</span></label>
                             <input class="form-control" id="age" name="age" required type="text">
 
                         </div>
@@ -67,7 +68,7 @@
 
                     <div class="col-sm-6">
                         <div class="form-group gender-select">
-                            <label class="gen-label">Gender: <span class="text-danger">*</span></label>
+                            <label class="gen-label"><b>Gender: </b><span class="text-danger">*</span></label>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
                                     <input type="radio" required id="genderMale" name="gender"
@@ -87,7 +88,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Address</label>
+                                    <label><b>Address</b></label>
                                     <textarea rows="5" id="address" name="address" class="form-control "></textarea>
                                 </div>
                             </div>
@@ -97,7 +98,7 @@
 
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>Email</label>
+                            <label><b>Email</b></label>
                             <input class="form-control" required id="email" name="email" type="text">
                         </div>
                     </div>
@@ -108,15 +109,14 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Doctor</label>
+                            <label><b>Doctor</b></label>
                             <select class="select" name="doctorId" id="doctorId" class="form-control" required>
                                 <option value="">Select</option>
                                 @foreach($doctors as $doctor)
                                     <option
-                                        value="{{$doctor->fkdoctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>
+                                        value="{{$doctor->doctorId}}">{{$doctor->firstName." ".$doctor->lastName}}</option>
                                 @endforeach
                             </select>
-
                         </div>
                         <span id="freetimetext"></span>
                     </div>
@@ -126,9 +126,9 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group" style="margin-left: -16px">
-                                <label>Date</label>
+                                <label><b>Appointment Date</b></label>
                                 <div>
-                                    <input class="form-control" type="text" name="day" id="datepicker" required>
+                                    <input class="form-control" type="text" name="day" id="datepicker" required autocomplete="off" placeholder="Click to select date">
                                 </div>
 
                             </div>
@@ -141,9 +141,9 @@
                     <div class="row">
                     <div class="col-sm-3">
                     <div class="form-group" style="margin-left: -16px">
-                        <label>Appointment Time</label>
+                        <label><b>Appointment Time</b></label>
                         <div class="time-icon">
-                            <input name="appointment_time" type="text" class="form-control" id="datetimepicker1">
+                            <input name="appointment_time" type="text" class="form-control" id="datetimepicker1" placeholder="Click to select time">
                         </div>
                     </div>
                     </div>
@@ -159,7 +159,6 @@
 
                 <div class="m-t-20 text-center">
                     <button type="submit" class="btn btn-primary submit-btn">Create Appointment</button>
-
                 </div>
 
             </form>
