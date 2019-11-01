@@ -165,6 +165,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
 
 
+
         /*
          * Package Service Providers...
          */
@@ -178,6 +179,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Propaganistas\LaravelPhone\PhoneServiceProvider::class,
 
     ],
 

@@ -1,5 +1,17 @@
 @extends('main')
 @section('content')
+
+
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+
+            <div class="alert alert-danger">{{ $error}}</div>
+
+        @endforeach
+
+    @endif
+
+
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <h4 class="page-title">Add Patient Information</h4>
@@ -7,7 +19,9 @@
     </div>
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
-            <form enctype="multipart/form-data" id="patientAddForm" action="{{route('patient.insert')}}" onsubmit="return validateform()" method="post" >
+
+            <form enctype="multipart/form-data" id="patientAddForm" action="{{route('patient.insert')}}"
+                  onsubmit="return validateform()" method="post">
                 {{csrf_field()}}
                 <div class="row">
                     <div class="col-sm-6">
@@ -39,12 +53,14 @@
                             <label class="gen-label">Gender: <span class="text-danger">*</span></label>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" required id="genderMale" name="gender" value="{{GENDER['Male']}}" class="form-check-input">Male
+                                    <input type="radio" required id="genderMale" name="gender"
+                                           value="{{GENDER['Male']}}" class="form-check-input">Male
                                 </label>
                             </div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" required id="genderFeMale" name="gender" value="{{GENDER['Female']}}" class="form-check-input">Female
+                                    <input type="radio" required id="genderFeMale" name="gender"
+                                           value="{{GENDER['Female']}}" class="form-check-input">Female
                                 </label>
                             </div>
                         </div>
@@ -58,8 +74,16 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+
                     </div>
+
+
                     <div class="col-sm-12">
+
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
@@ -68,11 +92,14 @@
                                 </div>
                             </div>
                         </div>
+
+
+
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Phone <span class="text-danger">*</span></label>
-                            <input class="form-control" required id="phone"name="phone" type="text">
+                            <input class="form-control" required id="phone" name="phone" type="text">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -107,7 +134,7 @@
             var validator = $("#patientAddForm").validate({
                 errorClass: 'errors',
                 rules: {
-                    age : "required",
+                    age: "required",
                 },
                 highlight: function (element) {
                     $(element).parent().addClass('error')
@@ -118,7 +145,7 @@
             });
             if (validator.form()) {
                 return true;
-            }else {
+            } else {
                 return false;
             }
         }

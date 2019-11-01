@@ -311,70 +311,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4 col-xl-4">
-            <div class="hospital-barchart">
-                <h4 class="card-title d-inline-block">Hospital Management</h4>
-            </div>
-            <div class="bar-chart">
-                <div class="legend">
-                    <div class="item">
-                        <h4>Level1</h4>
-                    </div>
 
-                    <div class="item">
-                        <h4>Level2</h4>
-                    </div>
-                    <div class="item text-right">
-                        <h4>Level3</h4>
-                    </div>
-                    <div class="item text-right">
-                        <h4>Level4</h4>
-                    </div>
-                </div>
-                <div class="chart clearfix">
-                    <div class="item">
-                        <div class="bar">
-                            <span class="percent">16%</span>
-                            <div class="item-progress" data-percent="16">
-                                <span class="title">OPD Patient</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="bar">
-                            <span class="percent">71%</span>
-                            <div class="item-progress" data-percent="71">
-                                <span class="title">New Patient</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="bar">
-                            <span class="percent">82%</span>
-                            <div class="item-progress" data-percent="82">
-                                <span class="title">Laboratory Test</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="bar">
-                            <span class="percent">67%</span>
-                            <div class="item-progress" data-percent="67">
-                                <span class="title">Treatment</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="bar">
-                            <span class="percent">30%</span>
-                            <div class="item-progress" data-percent="30">
-                                <span class="title">Discharge</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 

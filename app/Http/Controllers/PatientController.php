@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
+
 class PatientController extends Controller
 {
     public function index()
@@ -19,7 +20,16 @@ class PatientController extends Controller
     }
     public function insert(Request $r)
     {
-        // $userType = UserType::where('usertypeName', 'patient')->first();
+
+         $this->validate($r,['email'=>'email'],
+         $this->validate($r,['address'=>'regex:/^[a-zA-Z]+$/u|max:255|']));
+
+        $r->validate([
+            'phone' => 'phone,BD',
+        ]);
+//         $this->validate($r,['phone'=>'phone,BD']));
+//         $this->validate($r,['phone' => 'regex:/^[0-9\-\(\)\/\+\s]*$/|max:14'])));
+
         $patient = new Patient();
         $patient->firstName = $r->firstName;
         $patient->lastName = $r->lastName;
@@ -31,6 +41,7 @@ class PatientController extends Controller
         // $patient->fkuserId=$user->userId;
 //        $patient->status = $r->status;
         $patient->save();
+
         Session::flash('message', 'New Patient Added!');
         Session::flash('alert-class', 'alert-success');
         return redirect()->route('patients');
@@ -49,10 +60,11 @@ class PatientController extends Controller
         //$patient->status=$r->status;
         $patient->save();
 //        return $patient;
-        Session::flash('message', 'Patient Rocord Updated!');
-        Session::flash('alert-class', 'alert-success');
+//        Session::flash('message', 'Patient Rocord Updated!');
+//        Session::flash('alert-class', 'alert-success');
 //        return back();
-        return redirect()->route('patients');
+        return redirect()->route('patients')
+            ->with('success','List updated successfully');
     }
     public function editPatient($id)
     {

@@ -17,7 +17,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Service Name</label>
-                                    <input class="form-control" type="text" name="name">
+                                    <input class="form-control" type="text" name="name" required>
                                 </div>
                             </div>
                         </div>
