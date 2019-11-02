@@ -11,22 +11,25 @@ use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
-    public function index() {
-         $doctors = Doctor::simplePaginate(8);
+    public function index()
+    {
+        $doctors = Doctor::simplePaginate(8);
 
 //         $doctors->withPath('custom/url');
 
-        return view('doctor.index',compact('doctors'));
+        return view('doctor.index', compact('doctors'));
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
 
-        $doctors = Doctor::select('doctor.*','user.password')->leftJoin('user','user.userId','doctor.doctorId')->findOrfail($id);
+        $doctors = Doctor::select('doctor.*', 'user.password')->leftJoin('user', 'user.userId', 'doctor.doctorId')->findOrfail($id);
 
-        return view('doctor.edit',compact('doctors'));
+        return view('doctor.edit', compact('doctors'));
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
 
         $doctor = Doctor::findOrFail($id);
         $doctor->status = USER_STATUS['Deleted'];
@@ -43,9 +46,22 @@ class DoctorController extends Controller
 
     }
 
-    public function insert(Request $r) {
+    public function insert(Request $r)
+    {
 
-        $userType = UserType::where('usertypeName','doctor')->first();
+        $rules = [
+            'firstName' => 'regex:/^[a-zA-Z]+$/u|max:255|',
+            'lastName' => 'regex:/^[a-zA-Z]+$/u|max:255|',
+            'email' => 'email',
+            'degree' => 'regex:/^[a-zA-Z]+$/u|max:255|',
+            'password' => 'required',
+            'conPassword' => 'required_with:password|same:password|min:6',
+            'address' => 'regex:/^[a-zA-Z]+$/u|max:255|',
+            'phone' => 'phone:BD'
+        ];
+        $this->validate($r, $rules);
+
+        $userType = UserType::where('usertypeName', 'doctor')->first();
 
         $user = new User();
         $user->firstName = $r->firstName;
@@ -69,13 +85,13 @@ class DoctorController extends Controller
         $doctor->status = $r->status;
         $doctor->save();
 
-        if($r->hasFile('image')) {
+        if ($r->hasFile('image')) {
             $img = $r->file('image');
-            $filename = $doctor->doctorId.'Image'.'.'.$img->getClientOriginalExtension();
+            $filename = $doctor->doctorId . 'Image' . '.' . $img->getClientOriginalExtension();
             $doctor->image = $filename;
-            $location = public_path('doctorImages/'.$filename);
+            $location = public_path('doctorImages/' . $filename);
             Image::make($img)->save($location);
-            $location2 = public_path('doctorImages/thumb/'.$filename);
+            $location2 = public_path('doctorImages/thumb/' . $filename);
             Image::make($img)->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($location2);
@@ -90,27 +106,27 @@ class DoctorController extends Controller
 
     }
 
-    public function update(Request $r) {
+    public function update(Request $r)
+    {
 
-            $userType=UserType::where('usertypeName','doctor')->first();
+        $userType = UserType::where('usertypeName', 'doctor')->first();
 
 
+        $doctor = Doctor::findOrFail($r->doctorId);
 
-            $doctor=Doctor::findOrFail($r->doctorId);
-
-            $doctor->firstName = $r->firstName;
-            $doctor->lastName = $r->lastName;
-            $doctor->degree = $r->degree;
-            $doctor->email = $r->email;
-            $doctor->gender = $r->gender;
-            $doctor->phone = $r->phone;
-            $doctor->address = $r->address;
+        $doctor->firstName = $r->firstName;
+        $doctor->lastName = $r->lastName;
+        $doctor->degree = $r->degree;
+        $doctor->email = $r->email;
+        $doctor->gender = $r->gender;
+        $doctor->phone = $r->phone;
+        $doctor->address = $r->address;
 //        $doctor->fkuserId=$user->userId;
-            $doctor->status = $r->status;
+        $doctor->status = $r->status;
 
-            $doctor->save();
+        $doctor->save();
 
-        $user=User::findOrFail($doctor->fkuserId);
+        $user = User::findOrFail($doctor->fkuserId);
 
         $user->firstName = $r->firstName;
         $user->lastName = $r->lastName;
@@ -123,14 +139,14 @@ class DoctorController extends Controller
         $user->save();
 
 
-        if($r->hasFile('image')){
+        if ($r->hasFile('image')) {
 
             $img = $r->file('image');
-            $filename = $doctor->doctorId.'Image'.'.'.$img->getClientOriginalExtension();
+            $filename = $doctor->doctorId . 'Image' . '.' . $img->getClientOriginalExtension();
             $doctor->image = $filename;
-            $location = public_path('doctorImages/'.$filename);
+            $location = public_path('doctorImages/' . $filename);
             Image::make($img)->save($location);
-            $location2 = public_path('doctorImages/thumb/'.$filename);
+            $location2 = public_path('doctorImages/thumb/' . $filename);
             Image::make($img)->resize(200, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($location2);
