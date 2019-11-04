@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+        <div class="col-lg-7 offset-lg-2">
             <h3 class="page-title">Add Appointment </h3>
         </div>
     </div>
@@ -14,7 +14,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Patient Type : </label>
-                            <div class="col-sm-5 col-9 text-right m-b-20">
+                            <div class="col-sm-5 col-8 text-right m-b-20">
                                 <a href="{{route('appointment.old')}}" class="btn btn btn-primary btn-rounded float-right"> Old patient</a>
                             </div> &nbsp; &nbsp;
 

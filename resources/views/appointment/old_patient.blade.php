@@ -1,6 +1,8 @@
 @extends('main')
 @section('content')
 
+
+
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <h3 class="page-title">Old Appointment Record</h3>

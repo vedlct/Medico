@@ -15,9 +15,9 @@
 Auth::routes();
 
 Route::group(['middleware'=>['auth']],function (){
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+Route::get('/','WelcomeController@index')->name('welcome');
+
+    Route::post('/welcome-show','WelcomeController@showWelcome')->name('welcome.show');
 
     Route::view('admin/login','login');
 

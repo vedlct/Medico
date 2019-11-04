@@ -29,6 +29,21 @@ class AppointmentController extends Controller
     }
     public function insert(Request $r)
     {
+
+        $rules = [
+
+            'phone' => 'phone:BD',
+            'age' => 'digits_between:0,200',
+            'address' => 'regex:/^[a-zA-Z]+$/u|max:255|',
+            'email' => 'email',
+            'firstName' => 'regex:/^[a-zA-Z]+$/u|max:255|',
+            'lastName' => 'regex:/^[a-zA-Z]+$/u|max:255|',
+
+
+
+
+        ];
+        $this->validate($r, $rules);
         $checkday = WorkingHour::where('fkdoctorId', $r->doctorId)
             ->where('day',date('l',strtotime($r->day)))
             ->where('start_time' ,'<=', date('H:i:p', strtotime($r->appointment_time)))
