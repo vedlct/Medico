@@ -40,8 +40,6 @@ class AppointmentController extends Controller
             'lastName' => 'regex:/^[a-zA-Z]+$/u|max:255|',
 
 
-
-
         ];
         $this->validate($r, $rules);
         $checkday = WorkingHour::where('fkdoctorId', $r->doctorId)

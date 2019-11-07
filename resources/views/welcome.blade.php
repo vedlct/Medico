@@ -3,11 +3,12 @@
 @section('content')
 
 
+
     <div class="row">
-        <div class="col-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="col-12 col-md-3 col-lg-3 col-xl-3">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a href="appointments.html" class="btn btn-primary float-right">View all</a>
+                    <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a href="{{'appointment'}}" class="btn btn-primary float-right">View all</a>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
@@ -30,6 +31,10 @@
 
 
 
+
+
+
+
 @endsection
 
 @section('js')
@@ -45,6 +50,7 @@
                 processing: true,
                 serverSide: true,
                 stateSave: true,
+                paging : false,
                 "ajax": {
                     "url": "{!! route('welcome.show') !!}",
                     "type": "POST",
