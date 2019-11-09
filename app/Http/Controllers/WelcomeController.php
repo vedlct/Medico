@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Appointment;
 use App\Doctor;
 use App\Patient;
+use App\WorkingHour;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -13,20 +15,23 @@ use Yajra\DataTables\DataTables;
 class WelcomeController extends Controller
 
 {
-   public function index(){
-       $welcomePage = Appointment::paginate(5);
-       return view('welcome', compact('welcomePage'));
-   }
-    public function showWelcome()
+    public function index(Request $r)
     {
+//        $users = Appointment::select(DB::raw("concat(`patient`.`firstName`,' ',`patient`.`lastName`) as patientname"), DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname"), 'fkdoctorId', 'fkpatientId', 'patient.age', 'patient.phone')
+//            ->leftjoin('doctor', 'fkdoctorId', 'doctorId')
+//            ->leftjoin('patient', 'fkpatientId', 'patientId')->get();
+//
+//        $doctorList = WorkingHour::where('fkdoctorId', $r->doctorId)
+//            ->where('day',"==",date('l',strtotime(Carbon::today()->toDateString())));
+//        return view('welcome', compact('users','doctorList'));
 
-        $welcomeInfo = Appointment::select(DB::raw("concat(`patient`.`firstName`,' ',`patient`.`lastName`) as patientname"), DB::raw("concat(`doctor`.`firstName`, ' ' , `doctor`.`lastName`) as doctorname"), DB::raw("DATE_FORMAT(`appointment_time`,'%h:%i %p') as appointment_time"), 'fkdoctorId', 'fkpatientId')
-            ->leftjoin('doctor', 'fkdoctorId', 'doctorId')
-            ->leftjoin('patient', 'fkpatientId', 'patientId')->get();
+        $day = Carbon::today()->format('l');
 
-        $datatables = DataTables::of($welcomeInfo);
-        return $datatables->make(true);
+        echo $day;
 
     }
+
+
+
 
 }
