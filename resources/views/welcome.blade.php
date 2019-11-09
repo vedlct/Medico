@@ -19,11 +19,11 @@
 
     </style>
 
-    <body onload="makeTableScroll();">
+
 
 
     <div class="row">
-        <div class="col-12 col-md-5 col-lg-5 col-xl-5">
+        <div class="col-6 col-md-6 col-lg-6 col-xl-6">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a href="{{'appointment'}}"
@@ -64,13 +64,11 @@
             </div>
         </div>
 
-    </div>
 
-    <div class="row">
-        <div class="col-12 col-md-5 col-lg-5 col-xl-5">
+        <div class="col-6 col-md-6 col-lg-6 col-xl-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title d-inline-block">Today doctors schedule</h4> <a href="{{'appointment'}}"
+                    <h4 class="card-title d-inline-block">Today doctors schedule</h4> <a href="{{'schedule'}}"
                                                                                         class="btn btn-primary float-right">View
                         detailed List</a>
                 </div>
@@ -90,11 +88,11 @@
                             <tbody>
 
 
-                            @foreach($users as $user)
+                            @foreach($doctorLists as $doctorList)
                                 <tr>
-                                    <td>{{$user->doctorname}}</td>
-                                    <td>{{$user->start_time}}</td>
-                                    <td>{{$user->end_time}}</td>
+                                    <td>{{$doctorList->doctorname}}</td>
+                                    <td>{{$doctorList->start_time}}</td>
+                                    <td>{{$doctorList->end_time}}</td>
                                 </tr>
 
                             @endforeach
@@ -109,38 +107,38 @@
 
     </div>
 
-    </body>
-
-@endsection
-
-@section('js')
-
-    <script type="text/javascript">
-
-        function makeTableScroll() {
-            // Constant retrieved from server-side via JSP
-            var maxRows = 10;
-
-            var table = document.getElementById('mytable');
-            var wrapper = table.parentNode;
-            var rowsInTable = table.rows.length;
-            var height = 0;
-            if (rowsInTable > maxRows) {
-                for (var i = 0; i <= maxRows; i++) {
-                    height += table.rows[i].clientHeight;
-                }
-                wrapper.style.height = height + "px";
-            }
-        }
-
-
-    </script>
-
-
-
 
 
 @endsection
+
+{{--@section('js')--}}
+
+{{--    <script type="text/javascript">--}}
+
+{{--        function makeTableScroll() {--}}
+{{--            // Constant retrieved from server-side via JSP--}}
+{{--            var maxRows = 10;--}}
+
+{{--            var table = document.getElementById('mytable');--}}
+{{--            var wrapper = table.parentNode;--}}
+{{--            var rowsInTable = table.rows.length;--}}
+{{--            var height = 0;--}}
+{{--            if (rowsInTable > maxRows) {--}}
+{{--                for (var i = 0; i <= maxRows; i++) {--}}
+{{--                    height += table.rows[i].clientHeight;--}}
+{{--                }--}}
+{{--                wrapper.style.height = height + "px";--}}
+{{--            }--}}
+{{--        }--}}
+
+
+{{--    </script>--}}
+
+
+
+
+
+
 
 
 
