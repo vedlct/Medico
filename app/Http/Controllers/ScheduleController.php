@@ -68,14 +68,14 @@ class ScheduleController extends Controller
     public function deleteSchedule(Request $request)
     {
         $schedule = WorkingHour::findOrFail($request->id);
-//        dd($schedule);
+
         $schedule->delete();
     }
 
     public function editSchedule(Request $request)
     {
         $schedule = WorkingHour::findOrFail($request->id);
-//        dd($schedule);
+
 
         $day = array(
             'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');

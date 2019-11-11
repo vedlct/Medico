@@ -22,19 +22,24 @@ class WelcomeController extends Controller
             ->leftjoin('patient', 'fkpatientId', 'patientId')->limit(10)->get();
 
         $doctorLists = WorkingHour::select(DB::raw("concat(doctor.firstName, ' ' , doctor.lastName) as doctorname , DATE_FORMAT(start_time,'%h:%i %p') as start_time, DATE_FORMAT(end_time,'%h:%i %p') as end_time "), 'working_hourId', 'fkdoctorId', 'day')
-            ->leftjoin('doctor', 'fkdoctorId', 'doctorId')
-            ->where('day', '=', Carbon::today()->format('l'))->get();
+        ->leftjoin('doctor', 'fkdoctorId', 'doctorId')
+        ->where('day', '=', Carbon::today()->format('l'))->get();
 
 
-        return view('welcome', compact('users','doctorLists'));
+//        $nodoctorLists = WorkingHour::select('working_hourId', 'fkdoctorId', 'day')
+//            ->leftjoin('doctor', 'fkdoctorId', 'doctorId')
+//            ->where('day', '!=', Carbon::today()->format('l'))->get();
 
-//        $day = Carbon::today()->format('l');
-//
-//        echo $day;
+        $showDoctorCounts = Doctor::all()->count();
+        $showPatientCounts = Patient::all()->count();
+
+        $messages = ['No doctor is available today'];
+
+
+        return view('welcome', compact('users', 'doctorLists','showDoctorCounts','showPatientCounts','messages'));
+
 
     }
-
-
 
 
 }
